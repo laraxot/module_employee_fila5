@@ -60,7 +60,7 @@ class ExportTimeDataAction
 
         /** @var array{id: int, name: string, email: string, status: string, employeeNumber?: string, hireDate?: string, department?: array{id: int, name: string}, position?: array{id: int, name: string}} $employeeDataTyped */
         $employeeDataTyped = $employeeData;
-        
+
         /** @var array{workedMinutes: int, addedMinutes: int, reducedMinutes: int, contractMinutes: int} $summaryTyped */
         $summaryTyped = $baseData['summary'];
 
