@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Modules\Employee\Models\Department;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\Position;
-use Modules\Employee\Tests\TestCase;
-
 
 beforeEach(function () {
     DB::beginTransaction();
