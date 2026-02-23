@@ -41,7 +41,6 @@
 {{-- PROBLEMATICO: Layout verticale forzato --}}
 <div class="text-center space-y-6" wire:poll.30s="updateData">
     
-    {{-- Time/Date: OK ma non in colonna --}}
     <div class="space-y-2">...</div>
     
     {{-- Sessions: Lista verticale invece che compatta --}}

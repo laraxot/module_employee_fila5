@@ -233,5 +233,4 @@ Prima di considerare completata la risoluzione:
 ---
 
 *Roadmap creata il: Gennaio 2025*  
-*Ultimo aggiornamento: Gennaio 2025*  
 *Nota: Questa roadmap aggiorna quella precedente che mostrava 110 errori*

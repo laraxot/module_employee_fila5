@@ -10,6 +10,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
 use Filament\Widgets\Widget;
+use Modules\Employee\Filament\Resources\WorkHourResource\Pages;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Override;
@@ -17,6 +18,13 @@ use Override;
 class WorkHourResource extends XotBaseResource
 {
     protected static ?string $model = WorkHour::class;
+
+    public static function getPages(): array
+    {
+        return array_merge(parent::getPages(), [
+            'time-clock' => Pages\TimeClockPage::route('/time-clock'),
+        ]);
+    }
 
     /**
      * @return array<string|int, Component>

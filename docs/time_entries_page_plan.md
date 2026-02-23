@@ -7,7 +7,6 @@
 
 ### components
 - Service: `TimeEntriesService`
-  - `buildSessionsForRange(int $userId, Carbon $start, Carbon $end): array{byDate: array<string, list<array{start: Carbon, end: ?Carbon, status: string}>>, summary: array{worked:int, added:int, reduced:int, contract:int}, contracts: array<string,int>}`
 - Page: `TimeEntriesPage` (Filament page extends Xot base)
   - Header: live clock widget + primary action button.
   - Filters: week selector with prev/next and date picker.
