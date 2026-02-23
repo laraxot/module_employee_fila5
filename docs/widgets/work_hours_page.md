@@ -18,7 +18,6 @@ This guide documents how to implement the WorkHoursPage for the Employee module,
 `BuildTimeEntriesForRangeAction::execute(int $userId, Carbon $start, Carbon $end): array` returns
 ```
 {
-  byDate: { [date: string]: Array<{ start: string, end: string|null, status: string }> },
   summary: { workedMinutes: int, addedMinutes: int, reducedMinutes: int, contractMinutes: int },
   contracts: { [date: string]: int }
 }

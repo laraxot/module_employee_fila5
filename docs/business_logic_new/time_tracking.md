@@ -316,7 +316,6 @@ class GetTimeClockDataAction
         
         return new TimeClockData(
             currentTime: Carbon::now()->format('H:i'),
-            todayDate: Carbon::now()->locale('it')->isoFormat('dddd D MMMM YYYY'),
             todayEntries: $todayEntries->map(fn($entry) => [
                 'time' => $entry->timestamp->format('H:i'),
                 'type' => $entry->type->value,
