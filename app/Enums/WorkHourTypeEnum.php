@@ -33,4 +33,14 @@ enum WorkHourTypeEnum: string
             self::BREAK_END => 'Break End',
         };
     }
+
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::CLOCK_IN => 'success',
+            self::CLOCK_OUT => 'danger',
+            self::BREAK_START => 'warning',
+            self::BREAK_END => 'info',
+        };
+    }
 }

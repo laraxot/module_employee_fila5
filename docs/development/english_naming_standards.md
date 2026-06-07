@@ -200,3 +200,4 @@ Questa regola è ora permanentemente implementata per prevenire errori futuri!
 - [English Naming Rule](.cursor/rules/english-naming-critical-rule.mdc)
 - [Professional Standards](../README.md#naming-standards)
 
+*Ultimo aggiornamento: Gennaio 2025*

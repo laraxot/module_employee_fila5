@@ -7,6 +7,7 @@
 
 ### components
 - Service: `TimeEntriesService`
+  - `buildSessionsForRange(int $userId, Carbon $start, Carbon $end): array{byDate: array<string, list<array{start: Carbon, end: ?Carbon, status: string}>>, summary: array{worked:int, added:int, reduced:int, contract:int}, contracts: array<string,int>}`
 - Page: `TimeEntriesPage` (Filament page extends Xot base)
   - Header: live clock widget + primary action button.
   - Filters: week selector with prev/next and date picker.
@@ -27,5 +28,3 @@
 3. Add translations (en/it).
 4. Run PHPStan level 10 and fix issues.
 5. Update docs links from README to this plan and analysis.
-
-

@@ -33,4 +33,14 @@ enum WorkHourStatusEnum: string
             self::CANCELLED => 'Cancelled',
         };
     }
+
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::PENDING => 'warning',
+            self::APPROVED => 'success',
+            self::REJECTED => 'danger',
+            self::CANCELLED => 'gray',
+        };
+    }
 }

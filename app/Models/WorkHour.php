@@ -19,7 +19,7 @@ use Modules\User\Models\User;
  *
  * @property int $id
  * @property int $employee_id
- * @property string $type
+ * @property WorkHourTypeEnum $type
  * @property Carbon $timestamp
  * @property float|null $location_lat
  * @property float|null $location_lng
@@ -27,7 +27,7 @@ use Modules\User\Models\User;
  * @property array<string, mixed>|null $device_info
  * @property string|null $photo_path
  * @property string|null $notes
- * @property string $status
+ * @property WorkHourStatusEnum $status
  * @property int|null $approved_by
  * @property Carbon|null $approved_at
  * @property Carbon|null $created_at

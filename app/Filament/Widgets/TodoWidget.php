@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Filament\Schemas\Components\Component;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
 use Override;
 
 /**
@@ -14,7 +14,7 @@ use Override;
  * Displays a list of HR tasks that need to be completed by the user.
  * Features priority-based styling and direct action links.
  */
-class TodoWidget extends XotBaseWidget
+class TodoWidget extends XotBaseSchemaWidget
 {
     protected string $view = 'employee::filament.widgets.todo-widget';
 

@@ -236,3 +236,4 @@ protected function getHeaderWidgets(): array
 - [Widget Guidelines](../implementation/widget_guidelines.md)
 - [Testing Standards](../testing/testing_standards.md)
 
+*Ultimo aggiornamento: Gennaio 2025*
