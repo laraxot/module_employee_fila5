@@ -138,13 +138,15 @@ class TimeClock extends Component
         }
 
         $entries = WorkHour::getTodayEntries($this->employee->id);
-        /** @var array<int, array{time:string,type:string}> */
-        $mappedEntries = $entries->map(fn (WorkHour $entry): array => [
-            'time' => $entry->timestamp->format('H:i'),
-            'type' => (string) $entry->type,
-        ])->toArray();
-        /** @var array<int, array{time:string,type:string}> $mappedEntries */
-        $this->todayEntries = array_values($mappedEntries);
+        /** @var array<int, array{time: string, type: string}> $mappedEntries */
+        $mappedEntries = [];
+        foreach ($entries as $entry) {
+            $mappedEntries[] = [
+                'time' => $entry->timestamp->format('H:i'),
+                'type' => $entry->type->value,
+            ];
+        }
+        $this->todayEntries = $mappedEntries;
     }
 
     private function showNotification(string $title, string $body, string $type): void

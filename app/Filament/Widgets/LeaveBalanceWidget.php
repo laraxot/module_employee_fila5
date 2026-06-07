@@ -12,7 +12,7 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\Employee;
-use Modules\Xot\Filament\Widgets\XotBaseWidget;
+use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
 use Override;
 
 /**
@@ -20,7 +20,7 @@ use Override;
  *
  * Displays monthly and annual leave balances with visual progress bars.
  */
-class LeaveBalanceWidget extends XotBaseWidget
+class LeaveBalanceWidget extends XotBaseSchemaWidget
 {
     protected static ?int $sort = 2;
 

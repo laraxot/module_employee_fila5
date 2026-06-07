@@ -34,7 +34,7 @@ class BuildTimelineVisualizationAction
      *     position: array{top: int, height: int}
      *   }>>,
      *   workingHoursBounds: array{start: string, end: string},
-     *   dayStatus: array<string, array{status: string, indicator: string, color: string}>
+     *   dayStatus: array<string, array{status: string, indicator: string, color: string, dayName: string, isToday: bool, isWeekend: bool}>
      * }
      */
     public function execute(int $userId, Carbon $weekStart, Carbon $weekEnd): array
@@ -210,7 +210,7 @@ class BuildTimelineVisualizationAction
     /**
      * Determina colore sessione basato su orari e durata.
      *
-     * @param  array{startTime: Carbon, endTime: Carbon|null}  $session
+     * @param  array{start: string, startTime: Carbon, end: string|null, endTime: Carbon|null, color: string, status: string}  $session
      */
     private function determineSessionColor(array $session): string
     {
@@ -239,7 +239,7 @@ class BuildTimelineVisualizationAction
      * Costruisce stati giorni con indicatori.
      *
      * @param  array<string, array<int, array{start: string, end: string|null, duration: float, color: string, status: string, position: array{top: int, height: int}}>>  $sessionBlocks
-     * @return array<string, array{status: string, indicator: string, color: string}>
+     * @return array<string, array{status: string, indicator: string, color: string, dayName: string, isToday: bool, isWeekend: bool}>
      */
     private function buildDayStatus(array $sessionBlocks, Carbon $weekStart, Carbon $weekEnd): array
     {
@@ -256,8 +256,7 @@ class BuildTimelineVisualizationAction
                 'status' => $status['status'],
                 'indicator' => $status['indicator'],
                 'color' => $status['color'],
-                // @phpstan-ignore-next-line
-                'dayName' => Carbon::parse($current)->locale('it')->format('D d'),
+                'dayName' => $current->copy()->translatedFormat('D d'),
                 'isToday' => $current->isToday(),
                 'isWeekend' => $current->isWeekend(),
             ];

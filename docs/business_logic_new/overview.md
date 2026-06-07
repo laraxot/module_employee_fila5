@@ -234,6 +234,8 @@ class GenerateAttendanceReportAction
         
         return new AttendanceReportData(
             department: $department,
+            startDate: $startDate,
+            endDate: $endDate,
             employeeMetrics: $metrics,
             generatedAt: now()
         );
