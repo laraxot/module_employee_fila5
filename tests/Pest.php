@@ -2,34 +2,42 @@
 
 declare(strict_types=1);
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\Employee\Database\Factories\EmployeeFactory;
+use Modules\Employee\Database\Factories\WorkHourFactory;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
-use Modules\Employee\Tests\TestCase;
 
-// ✅ CONFIGURAZIONE CORRETTA PEST + DATABASE TRANSACTIONS
-uses(TestCase::class, DatabaseTransactions::class)->in('Feature', 'Unit', 'Integration');
+// Ogni file test dichiara uses(\Modules\Employee\Tests\TestCase::class, ...) singolarmente.
+// Vietato uses()->in() qui (PHPStan method.internalClass / undefined $this in Pest extension).
 
-expect()->extend('toBeEmployee', fn () => $this->toBeInstanceOf(Employee::class));
-
-expect()->extend('toBeWorkHour', fn () => $this->toBeInstanceOf(WorkHour::class));
-
+/**
+ * @param  array<string, mixed>  $attributes
+ */
 function createEmployee(array $attributes = []): Employee
 {
-    return Employee::factory()->create($attributes);
+    return EmployeeFactory::new()->createOne($attributes);
 }
 
+/**
+ * @param  array<string, mixed>  $attributes
+ */
 function makeEmployee(array $attributes = []): Employee
 {
-    return Employee::factory()->make($attributes);
+    return EmployeeFactory::new()->makeOne($attributes);
 }
 
+/**
+ * @param  array<string, mixed>  $attributes
+ */
 function createWorkHour(array $attributes = []): WorkHour
 {
-    return WorkHour::factory()->create($attributes);
+    return WorkHourFactory::new()->createOne($attributes);
 }
 
+/**
+ * @param  array<string, mixed>  $attributes
+ */
 function makeWorkHour(array $attributes = []): WorkHour
 {
-    return WorkHour::factory()->make($attributes);
+    return WorkHourFactory::new()->makeOne($attributes);
 }
