@@ -1,10 +1,20 @@
 # PHPStan Level 10 Compliance Status
 
-**Last Updated**: 2025-12-10  
-**Status**: ✅ FULLY COMPLIANT (0 errors)
+**Last Updated**: 2026-07-06
+
+**Status**: ✅ FULLY COMPLIANT (0 errors, level max)
+
+Baseline sessione 2026-07-06: 1704 → 0.
+
+## Root cause found and fixed
+`Modules/Employee/tests/TestCase.php` declared `public ?BaseModel $baseModel = null;`, narrowing a property inherited as `mixed` from `Modules\Xot\Tests\XotBaseTestCase::$baseModel`. PHP forbids narrowing an inherited property's type, so the class **failed to load with a fatal error at runtime**. PHPStan/Pest's static analysis silently fell back to a generic type for every `uses(TestCase::class)` binding in the whole module, which cascaded into ~1700 "Undefined variable $this" / "cannot access property on mixed" errors across every test file.
+
+Fix: removed the narrowing property override, switched the module's `TestCase` to extend `XotBaseTestCase` (the convention used by every other module), removed the forbidden `uses()->in()` bulk binding and `expect()->extend()` calls from `tests/Pest.php` (replaced with per-file `uses(TestCase::class)`, matching Geo/Notify/User/Tenant/Job convention), and rewrote a handful of tests (`EmployeeTest.php`, `WorkHourTest.php`, `EmployeeOverviewWidgetTest.php`, `TimeTrackingWidgetTest.php`) that asserted an API (department/position relations, `isActive()`/`hasManager()`/`hasSubordinates()`, a `TimeTrackingWidget` class, `startBreak()`) that never existed on the real models — corrected to match the actual `Employee`/`WorkHour`/`TimeClockWidget` implementation instead of adding the missing production code.
+
+**Not verified at runtime**: this sandbox has no `techplanner_data_test` MySQL database, so Pest could not be executed end-to-end; only static analysis (PHPStan) was confirmed clean.
 
 ## Summary
-The Employee module is already compliant with PHPStan Level 10 analysis. No errors were found during the verification process, demonstrating excellent type safety and code quality standards.
+The Employee module is compliant with PHPStan Level 10 analysis. No errors are found during verification.
 
 ## Compliance Verification
 ```bash
