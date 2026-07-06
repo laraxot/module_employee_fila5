@@ -249,16 +249,4 @@ class TimeClockWidget extends XotBaseSchemaWidget
             ->warning()
             ->send();
     }
-
-    /**
-     * Notifica di errore (DRY principle).
-     */
-    private function notifyError(string $message): void
-    {
-        Notification::make()
-            ->title('Errore')
-            ->body($message)
-            ->danger()
-            ->send();
-    }
 }

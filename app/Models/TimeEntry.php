@@ -123,6 +123,8 @@ final class TimeEntry extends BaseModel
 
     /**
      * Get the employee that owns this time entry.
+     *
+     * @return BelongsTo<Employee, $this>
      */
     public function employee(): BelongsTo
     {
@@ -131,6 +133,8 @@ final class TimeEntry extends BaseModel
 
     /**
      * Get the employee who approved this time entry.
+     *
+     * @return BelongsTo<Employee, $this>
      */
     public function approvedBy(): BelongsTo
     {
@@ -139,6 +143,9 @@ final class TimeEntry extends BaseModel
 
     /**
      * Scope to get pending entries.
+     *
+     * @param Builder<self> $query
+     * @return Builder<self>
      */
     public function scopePending(Builder $query): Builder
     {
@@ -147,6 +154,9 @@ final class TimeEntry extends BaseModel
 
     /**
      * Scope to get entries for a specific employee.
+     *
+     * @param Builder<self> $query
+     * @return Builder<self>
      */
     public function scopeForEmployee(Builder $query, int $employeeId): Builder
     {
@@ -155,6 +165,9 @@ final class TimeEntry extends BaseModel
 
     /**
      * Scope to get entries with anomalies.
+     *
+     * @param Builder<self> $query
+     * @return Builder<self>
      */
     public function scopeWithAnomalies(Builder $query): Builder
     {

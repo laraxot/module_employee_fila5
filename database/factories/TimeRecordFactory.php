@@ -5,6 +5,7 @@ namespace Modules\Employee\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Employee\Models\TimeRecord;
 
+/** @extends Factory<TimeRecord> */
 class TimeRecordFactory extends Factory
 {
     /**

@@ -53,6 +53,8 @@ class Dashboard extends XotBaseDashboard
 
     /**
      * Configura il numero di colonne per i widget (3 widget per riga).
+     *
+     * @return int|array<string, int>
      */
     protected function getWidgetsColumns(): int|array
     {

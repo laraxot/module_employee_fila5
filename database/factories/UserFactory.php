@@ -7,6 +7,7 @@ namespace Modules\Employee\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Employee\Models\User;
 
+/** @extends Factory<User> */
 class UserFactory extends Factory
 {
     /**

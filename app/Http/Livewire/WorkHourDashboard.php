@@ -201,20 +201,6 @@ class WorkHourDashboard extends Component
         $this->recentEntries = $mappedEntries;
     }
 
-    private function getDaysWorkedInPeriod(Carbon $start, Carbon $end): int
-    {
-        if (! $this->employee) {
-            return 0;
-        }
-
-        $entries = WorkHour::where('employee_id', $this->employee->id)
-            ->whereBetween('timestamp', [$start, $end])
-            ->where('type', WorkHourTypeEnum::CLOCK_IN->value)
-            ->get();
-
-        return $entries->groupBy(fn (WorkHour $entry): string => $entry->timestamp->format('Y-m-d'))->count();
-    }
-
     public function render(): View
     {
         return view('employee::livewire.work-hour-dashboard');

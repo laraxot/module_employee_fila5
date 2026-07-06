@@ -52,7 +52,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read \Modules\User\Models\User|null $user
- * @property-read Collection<WorkHour> $workHours
+ * @property-read Collection<int, WorkHour> $workHours
  * @property string|null $name
  * @property string|null $first_name
  * @property string|null $last_name

@@ -91,6 +91,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that owns the timbratura.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -99,6 +101,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that created the timbratura.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function createdBy(): BelongsTo
     {
@@ -107,6 +111,8 @@ class TimeRecord extends BaseModel
 
     /**
      * Get the user that updated the timbratura.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function updatedBy(): BelongsTo
     {
