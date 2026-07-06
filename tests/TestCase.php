@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Tests;
 
+use Carbon\Carbon;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\ServiceProvider;
+use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\User;
+use Modules\Employee\Models\WorkHour;
 use Modules\Employee\Providers\EmployeeServiceProvider;
-use Modules\Xot\Tests\CreatesApplication;
+use Modules\Xot\Tests\XotBaseTestCase;
+use PHPUnit\Framework\Assert;
 
 /**
  * Base test case per il modulo Employee.
@@ -15,10 +21,17 @@ use Modules\Xot\Tests\CreatesApplication;
  * ✅ Configurato per Pest
  * ✅ Performance ottimizzate
  */
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends XotBaseTestCase
 {
-    use CreatesApplication;
     use DatabaseTransactions; // ✅ SEMPRE - Performance 100x migliori
+
+    public ?Employee $employee = null;
+
+    public ?WorkHour $workHour = null;
+
+    public ?User $user = null;
+
+    public ?Carbon $today = null;
 
     protected function setUp(): void
     {
@@ -31,10 +44,42 @@ abstract class TestCase extends BaseTestCase
         $this->withoutExceptionHandling();
     }
 
-    protected function getPackageProviders($app): array
+    /**
+     * @return array<int, class-string<ServiceProvider>>
+     */
+    protected function getPackageProviders(Application $app): array
     {
         return [
+            ...parent::getPackageProviders($app),
             EmployeeServiceProvider::class,
         ];
+    }
+
+    public function employee(): Employee
+    {
+        Assert::assertNotNull($this->employee);
+
+        return $this->employee;
+    }
+
+    public function workHourModel(): WorkHour
+    {
+        Assert::assertNotNull($this->workHour);
+
+        return $this->workHour;
+    }
+
+    public function todayDate(): Carbon
+    {
+        Assert::assertNotNull($this->today);
+
+        return $this->today;
+    }
+
+    public function user(): User
+    {
+        Assert::assertNotNull($this->user);
+
+        return $this->user;
     }
 }

@@ -53,3 +53,14 @@ To maintain PHPStan compliance:
 - [HR Patterns](hr-patterns.md)
 - [Department Structure](department-structure.md)
 - [Role Management](role-management.md)
+
+## Real status update (2026-07-06)
+
+Verified by running `./vendor/bin/phpstan analyse Modules --memory-limit=-1` at the configured `level: max`. Prior "compliance" claims in this file were not accurate — the module currently reports **1704 errors**, the largest count of any module in the project.
+
+Breakdown of the two dominant causes found:
+
+1. **Pest `$this` binding (~862 errors, fixed)** — Pest test closures (`it()`, `test()`, `beforeEach()`, `afterEach()`) call `$this->get()`, `$this->actingAs()`, etc. PHPStan cannot infer `$this`'s type inside these global closures without help, because neither `larastan/larastan` nor `pestphp/pest`'s bundled `extension.neon` bind it to the module's `TestCase`. Fix applied: a `/** @var Modules\Employee\Tests\TestCase $this */` PHPDoc annotation was inserted as the first statement of every closure that uses `$this`, via an AST-based script (nikic/php-parser) — not a manual/regex edit, so formatting elsewhere is untouched. This is the standard workaround for this known Pest+PHPStan limitation, not a suppression.
+2. **`method.internalClass` on `expect()->toBe()` chains (~unquantified within Employee, ~374 project-wide)** — `Pest\Mixins\Expectation` is marked `@internal`, and PHPStan (independent of any bleeding-edge setting) flags calls to `@internal`-tagged classes from outside their declaring namespace. Since virtually every Pest test lives outside the `Pest` namespace, **any** `expect(...)->toBe(...)` chain triggers this. This is a project-wide tooling friction point, not a bug in Employee-specific code. `phpstan.neon` already has a commented-out `# - identifier: method.internalClass` ignore rule — since only the repo owner may edit `phpstan.neon`, this cannot be resolved per-file without rewriting all assertions to PHPUnit-style (`$this->assertSame(...)`) instead of `expect()`, which is a scope decision for the owner, not something to do unilaterally across hundreds of tests.
+
+Remaining ~800+ Employee errors (after the Pest binding fix) are a mix of real issues requiring case-by-case judgment: missing model scopes (e.g. `Employee::active()`), missing constants (e.g. `WorkHour::TYPE_CLOCK_IN`), and references to classes that don't exist (e.g. `Filament\Widgets\TimeTrackingWidget`) — each needs verification of whether the **test** is wrong (references something never built) or the **production code** is genuinely incomplete, before touching anything, per project policy of never inventing missing production code to satisfy a test.
