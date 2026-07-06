@@ -119,6 +119,9 @@ class TimeClockPage extends XotBasePage implements HasTable
             ]);
     }
 
+    /**
+     * @return Builder<WorkHour>
+     */
     protected function getTableQuery(): Builder
     {
         return WorkHour::query()

@@ -64,6 +64,8 @@ class Department extends BaseModel
 
     /**
      * Get the employees for the department.
+     *
+     * @return HasMany<Employee, $this>
      */
     public function employees(): HasMany
     {

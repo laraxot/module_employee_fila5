@@ -40,12 +40,16 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
     public bool $showToleranceThreshold = false;
 
     // Dati computati dal widget
+    /** @var array<string, mixed> */
     public array $weekData = [];
 
+    /** @var array<string, mixed> */
     public array $timelineData = [];
 
+    /** @var array<string, mixed> */
     public array $employeeInfo = [];
 
+    /** @var array<string, mixed> */
     public array $summaryData = [];
 
     public function mount(): void

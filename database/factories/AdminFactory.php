@@ -7,6 +7,7 @@ namespace Modules\Employee\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Employee\Models\Admin;
 
+/** @extends Factory<Admin> */
 class AdminFactory extends Factory
 {
     /**

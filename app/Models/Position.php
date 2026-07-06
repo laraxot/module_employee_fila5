@@ -67,6 +67,8 @@ class Position extends BaseModel
 
     /**
      * Get the employees for the position.
+     *
+     * @return HasMany<Employee, $this>
      */
     public function employees(): HasMany
     {
