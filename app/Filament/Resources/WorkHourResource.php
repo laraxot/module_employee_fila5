@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Filament\Resources;
 
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Schemas\Components\Component;
-use Filament\Schemas\Components\Section;
 use Filament\Widgets\Widget;
 use Modules\Employee\Filament\Resources\WorkHourResource\Pages;
+use Modules\Employee\Filament\Resources\WorkHourResource\Schemas\WorkHourForm;
+use Modules\Employee\Filament\Resources\WorkHourResource\Schemas\WorkHourInfolist;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Override;
@@ -26,22 +23,16 @@ class WorkHourResource extends XotBaseResource
         ]);
     }
 
-    /**
-     * @return array<string|int, Component>
-     */
     #[Override]
     public static function getFormSchema(): array
     {
-        return [
-            Section::make('Time Entry Details')
-                ->schema([
-                    Select::make('employee_id')->relationship('employee', 'name')->required(),
-                    DateTimePicker::make('clock_in')->required(),
-                    DateTimePicker::make('clock_out'),
-                    Textarea::make('notes')->maxLength(65535),
-                ])
-                ->columns(2),
-        ];
+        return WorkHourForm::getFormSchema();
+    }
+
+    #[Override]
+    public static function getInfolistSchema(): array
+    {
+        return WorkHourInfolist::getInfolistSchema();
     }
 
     /**
