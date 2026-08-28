@@ -7,27 +7,16 @@ namespace Modules\Employee\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon;
-use Modules\Employee\Database\Factories\DepartmentFactory;
-use Modules\Xot\Contracts\ProfileContract;
+use Modules\TechPlanner\Models\Profile;
 
 /**
  * Class Department.
  *
- * @property int $id
- * @property string $name
- * @property string|null $description
- * @property int|null $manager_id
- * @property bool $is_active
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property-read Profile|null $creator
  * @property-read Collection<int, Employee> $employees
  * @property-read int|null $employees_count
- * @property-read ProfileContract|null $creator
- * @property-read ProfileContract|null $deleter
- * @property-read ProfileContract|null $updater
+ * @property-read Profile|null $updater
  *
- * @method static DepartmentFactory factory($count = null, $state = [])
  * @method static Builder<static>|Department newModelQuery()
  * @method static Builder<static>|Department newQuery()
  * @method static Builder<static>|Department query()

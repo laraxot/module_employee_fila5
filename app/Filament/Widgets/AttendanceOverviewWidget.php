@@ -6,8 +6,8 @@ namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
@@ -16,7 +16,6 @@ use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Contracts\View\View;
 use Modules\User\Models\User;
 use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
-use Override;
 
 /**
  * Attendance overview widget showing next 7 days schedule.
@@ -49,7 +48,7 @@ class AttendanceOverviewWidget extends XotBaseSchemaWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
-                        ->afterStateUpdated(function ($state): void {
+                        ->afterStateUpdated(function (mixed $state): void {
                             if (is_string($state) || $state === null) {
                                 $this->selectedDepartment = $state;
                             }
@@ -60,34 +59,34 @@ class AttendanceOverviewWidget extends XotBaseSchemaWidget
                                 ->label(__('employee::widgets.attendance_overview.tabs.absences'))
                                 ->badge($this->getAbsencesCount())
                                 ->schema([
-                                    Placeholder::make(
+                                    TextEntry::make(
                                         'absences_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                    )->state(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
                                         'items' => $this->getAbsences(),
                                         'type' => 'absences',
-                                    ])),
+                                    ]))->label(''),
                                 ]),
                             Tab::make('smart_working')
                                 ->label(__('employee::widgets.attendance_overview.tabs.smart_working'))
                                 ->badge($this->getSmartWorkingCount())
                                 ->schema([
-                                    Placeholder::make(
+                                    TextEntry::make(
                                         'smart_working_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                    )->state(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
                                         'items' => $this->getSmartWorking(),
                                         'type' => 'smart_working',
-                                    ])),
+                                    ]))->label(''),
                                 ]),
                             Tab::make('transfers')
                                 ->label(__('employee::widgets.attendance_overview.tabs.transfers'))
                                 ->badge($this->getTransfersCount())
                                 ->schema([
-                                    Placeholder::make(
+                                    TextEntry::make(
                                         'transfers_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                    )->state(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
                                         'items' => $this->getTransfers(),
                                         'type' => 'transfers',
-                                    ])),
+                                    ]))->label(''),
                                 ]),
                         ])
                         ->activeTab(1),

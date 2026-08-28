@@ -6,8 +6,8 @@ namespace Modules\Employee\Filament\Widgets;
 
 use Exception;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
@@ -52,8 +52,8 @@ class TeamPresenceWidget extends XotBaseSchemaWidget
                         ->afterStateUpdated(
                             fn (mixed $state) => $this->selectedDepartment = is_string($state) ? $state : null,
                         ),
-                    Placeholder::make('presence_stats')->content(fn () => $this->renderStatsDisplay($presenceData)),
-                    Placeholder::make('presence_list')->content(fn () => $this->renderPresenceList($presenceData)),
+                    TextEntry::make('presence_stats')->state(fn () => $this->renderStatsDisplay($presenceData))->label(''),
+                    TextEntry::make('presence_list')->state(fn () => $this->renderPresenceList($presenceData))->label(''),
                     Actions::make([
                         Action::make('view_detail')
                             ->label(__('employee::widgets.team_presence.view_detail'))
