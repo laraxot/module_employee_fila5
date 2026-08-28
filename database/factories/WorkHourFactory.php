@@ -30,8 +30,8 @@ class WorkHourFactory extends Factory
         $hour = $this->faker->numberBetween(8, 18);
         $minute = $this->faker->randomElement([0, 15, 30, 45]);
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            is_int($hour) ? $hour : ((int) $hour),
-            is_int($minute) ? $minute : ((int) $minute),
+            $hour,
+            is_int($minute) ? $minute : 0,
             0,
         );
 
@@ -66,9 +66,10 @@ class WorkHourFactory extends Factory
     {
         $entries = [];
 
+        $clockInMinute = $this->faker->randomElement([0, 15, 30, 45]);
         $clockInTime = $date->copy()->setTime(
-            (int) $this->faker->numberBetween(8, 9),
-            (int) $this->faker->randomElement([0, 15, 30, 45]),
+            $this->faker->numberBetween(8, 9),
+            is_int($clockInMinute) ? $clockInMinute : 0,
             0,
         );
 
@@ -156,11 +157,13 @@ class WorkHourFactory extends Factory
 
     public function forDate(Carbon $date): static
     {
+        $minute = $this->faker->randomElement([0, 15, 30, 45]);
+
         return $this->state([
             'date' => $date->toDateString(),
             'timestamp' => $date->copy()->setTime(
-                (int) $this->faker->numberBetween(8, 18),
-                (int) $this->faker->randomElement([0, 15, 30, 45]),
+                $this->faker->numberBetween(8, 18),
+                is_int($minute) ? $minute : 0,
                 0,
             ),
         ]);

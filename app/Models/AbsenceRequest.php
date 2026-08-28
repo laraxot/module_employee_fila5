@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
-use Modules\Employee\Database\Factories\AbsenceRequestFactory;
+use Modules\TechPlanner\Models\Profile;
 
 /**
  * Class AbsenceRequest.
@@ -19,8 +19,8 @@ use Modules\Employee\Database\Factories\AbsenceRequestFactory;
  * @property int $id
  * @property int $user_id
  * @property string $type
- * @property Carbon $starts_at
- * @property Carbon $ends_at
+ * @property Carbon|null $starts_at
+ * @property Carbon|null $ends_at
  * @property string|null $notes
  * @property string $status
  * @property int|null $decided_by_user_id
@@ -28,13 +28,19 @@ use Modules\Employee\Database\Factories\AbsenceRequestFactory;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
- * @property-read Employee|null $user
+ * @property-read Profile|null $creator
  * @property-read Employee|null $decidedBy
+ * @property-read Profile|null $updater
+ * @property-read Employee|null $user
  *
- * @method static AbsenceRequestFactory factory($count = null, $state = [])
+ * @method static Builder<static>|AbsenceRequest forUser(int $userId)
  * @method static Builder<static>|AbsenceRequest newModelQuery()
  * @method static Builder<static>|AbsenceRequest newQuery()
+ * @method static Builder<static>|AbsenceRequest onlyTrashed()
+ * @method static Builder<static>|AbsenceRequest pending()
  * @method static Builder<static>|AbsenceRequest query()
+ * @method static Builder<static>|AbsenceRequest withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|AbsenceRequest withoutTrashed()
  *
  * @mixin \Eloquent
  */
@@ -42,19 +48,19 @@ class AbsenceRequest extends BaseModel
 {
     use SoftDeletes;
 
-    public const STATUS_PENDING = 'pending';
+    public const string STATUS_PENDING = 'pending';
 
-    public const STATUS_APPROVED = 'approved';
+    public const string STATUS_APPROVED = 'approved';
 
-    public const STATUS_REJECTED = 'rejected';
+    public const string STATUS_REJECTED = 'rejected';
 
-    public const TYPE_VACATION = 'vacation';
+    public const string TYPE_VACATION = 'vacation';
 
-    public const TYPE_LEAVE = 'leave';
+    public const string TYPE_LEAVE = 'leave';
 
-    public const TYPE_SICK = 'sick';
+    public const string TYPE_SICK = 'sick';
 
-    public const TYPE_INJURY = 'injury';
+    public const string TYPE_INJURY = 'injury';
 
     /**
      * The attributes that are mass assignable.

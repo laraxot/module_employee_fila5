@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Modules\Employee\Database\Factories\TimeEntryFactory;
-use Modules\Xot\Contracts\ProfileContract;
+use Illuminate\Support\Carbon;
+use Modules\TechPlanner\Models\Profile;
 
 /**
  * Class TimeEntry.
@@ -23,9 +22,9 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property float|null $total_hours
  * @property float|null $regular_hours
  * @property float|null $overtime_hours
- * @property array<string, mixed>|null $location_in
- * @property array<string, mixed>|null $location_out
- * @property array<string, mixed>|null $device_info
+ * @property array<mixed>|null $location_in
+ * @property array<mixed>|null $location_out
+ * @property array<mixed>|null $device_info
  * @property string|null $notes
  * @property string|null $employee_notes
  * @property string|null $supervisor_notes
@@ -33,69 +32,30 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property int|null $approved_by
  * @property Carbon|null $approved_at
  * @property string|null $rejection_reason
- * @property array<string, mixed>|null $anomalies
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Employee $employee
+ * @property array<mixed>|null $anomalies
  * @property-read Employee|null $approvedBy
- * @property string $type Type of time entry
- * @property string $timestamp Exact time of entry
- * @property numeric|null $location_lat GPS latitude coordinate
- * @property numeric|null $location_lng GPS longitude coordinate
- * @property string|null $location_name Human readable location name
- * @property string|null $photo_path Path to verification photo
- * @property-read ProfileContract|null $creator
- * @property-read ProfileContract|null $deleter
- * @property-read ProfileContract|null $updater
+ * @property-read Profile|null $creator
+ * @property-read Employee|null $employee
+ * @property-read Profile|null $updater
  *
- * @method static TimeEntryFactory factory($count = null, $state = [])
  * @method static Builder<static>|TimeEntry forEmployee(int $employeeId)
  * @method static Builder<static>|TimeEntry newModelQuery()
  * @method static Builder<static>|TimeEntry newQuery()
  * @method static Builder<static>|TimeEntry pending()
  * @method static Builder<static>|TimeEntry query()
- * @method static Builder<static>|TimeEntry whereApprovedAt($value)
- * @method static Builder<static>|TimeEntry whereApprovedBy($value)
- * @method static Builder<static>|TimeEntry whereClockIn($value)
- * @method static Builder<static>|TimeEntry whereClockOut($value)
- * @method static Builder<static>|TimeEntry whereBreakStart($value)
- * @method static Builder<static>|TimeEntry whereBreakEnd($value)
- * @method static Builder<static>|TimeEntry whereBreakDuration($value)
- * @method static Builder<static>|TimeEntry whereTotalHours($value)
- * @method static Builder<static>|TimeEntry whereRegularHours($value)
- * @method static Builder<static>|TimeEntry whereOvertimeHours($value)
- * @method static Builder<static>|TimeEntry whereLocationIn($value)
- * @method static Builder<static>|TimeEntry whereLocationOut($value)
- * @method static Builder<static>|TimeEntry whereDeviceInfo($value)
- * @method static Builder<static>|TimeEntry whereNotes($value)
- * @method static Builder<static>|TimeEntry whereEmployeeNotes($value)
- * @method static Builder<static>|TimeEntry whereSupervisorNotes($value)
- * @method static Builder<static>|TimeEntry whereStatus($value)
- * @method static Builder<static>|TimeEntry whereRejectionReason($value)
- * @method static Builder<static>|TimeEntry whereAnomalies($value)
- * @method static Builder<static>|TimeEntry whereCreatedAt($value)
- * @method static Builder<static>|TimeEntry whereUpdatedAt($value)
- * @method static Builder<static>|TimeEntry whereId($value)
- * @method static Builder<static>|TimeEntry whereEmployeeId($value)
- * @method static Builder<static>|TimeEntry whereLocationLat($value)
- * @method static Builder<static>|TimeEntry whereLocationLng($value)
- * @method static Builder<static>|TimeEntry whereLocationName($value)
- * @method static Builder<static>|TimeEntry wherePhotoPath($value)
- * @method static Builder<static>|TimeEntry whereTimestamp($value)
- * @method static Builder<static>|TimeEntry whereType($value)
  * @method static Builder<static>|TimeEntry withAnomalies()
  *
  * @mixin \Eloquent
  */
 final class TimeEntry extends BaseModel
 {
-    public const STATUS_PENDING = 'pending';
+    public const string STATUS_PENDING = 'pending';
 
-    public const STATUS_APPROVED = 'approved';
+    public const string STATUS_APPROVED = 'approved';
 
-    public const STATUS_AUTO_APPROVED = 'auto_approved';
+    public const string STATUS_AUTO_APPROVED = 'auto_approved';
 
-    public const STATUS_REJECTED = 'rejected';
+    public const string STATUS_REJECTED = 'rejected';
 
     /** @var list<string> */
     protected $fillable = [
@@ -120,6 +80,30 @@ final class TimeEntry extends BaseModel
         'rejection_reason',
         'anomalies',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'clock_in' => 'datetime',
+            'clock_out' => 'datetime',
+            'break_start' => 'datetime',
+            'break_end' => 'datetime',
+            'break_duration' => 'integer',
+            'total_hours' => 'float',
+            'regular_hours' => 'float',
+            'overtime_hours' => 'float',
+            'location_in' => 'array',
+            'location_out' => 'array',
+            'device_info' => 'array',
+            'approved_at' => 'datetime',
+            'anomalies' => 'array',
+        ];
+    }
 
     /**
      * Get the employee that owns this time entry.

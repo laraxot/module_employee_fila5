@@ -8,40 +8,39 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Modules\Employee\Database\Factories\WorkHourFactory;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
+use Modules\TechPlanner\Models\Profile;
 use Modules\User\Models\User;
-use Modules\Xot\Contracts\ProfileContract;
 
 /**
  * Class WorkHour.
  *
  * @property int $id
- * @property int $employee_id
+ * @property string $employee_id
  * @property WorkHourTypeEnum $type
- * @property Carbon $timestamp
- * @property float|null $location_lat
- * @property float|null $location_lng
+ * @property WorkHourStatusEnum $status
+ * @property \Illuminate\Support\Carbon $timestamp
+ * @property numeric-string|null $location_lat
+ * @property numeric-string|null $location_lng
  * @property string|null $location_name
  * @property array<string, mixed>|null $device_info
  * @property string|null $photo_path
  * @property string|null $notes
- * @property WorkHourStatusEnum $status
  * @property int|null $approved_by
- * @property Carbon|null $approved_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Employee $employee
+ * @property \Illuminate\Support\Carbon|null $approved_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read User|null $approvedBy
- * @property-read ProfileContract|null $creator
+ * @property-read Profile|null $creator
+ * @property-read User|null $employee
  * @property-read string $formatted_date
  * @property-read string $formatted_date_time
  * @property-read string $formatted_time
- * @property-read ProfileContract|null $updater
+ * @property-read Profile|null $updater
  *
  * @method static Builder<static>|WorkHour forDate(\Carbon\Carbon $date)
- * @method static Builder<static>|WorkHour forEmployee(int $employeeId)
+ * @method static Builder<static>|WorkHour forEmployee(string $employeeId)
  * @method static Builder<static>|WorkHour newModelQuery()
  * @method static Builder<static>|WorkHour newQuery()
  * @method static Builder<static>|WorkHour ofType(string $type)
@@ -63,22 +62,20 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|WorkHour whereType($value)
  * @method static Builder<static>|WorkHour whereUpdatedAt($value)
  *
- * @property-read ProfileContract|null $deleter
- *
- * @method static WorkHourFactory factory($count = null, $state = [])
- *
  * @mixin \Eloquent
  */
 class WorkHour extends BaseModel
 {
-    public const TYPES = [
+    /** @var list<string> */
+    public const array TYPES = [
         WorkHourTypeEnum::CLOCK_IN->value,
         WorkHourTypeEnum::CLOCK_OUT->value,
         WorkHourTypeEnum::BREAK_START->value,
         WorkHourTypeEnum::BREAK_END->value,
     ];
 
-    public const STATUSES = [
+    /** @var list<string> */
+    public const array STATUSES = [
         'pending',
         'approved',
         'rejected',
@@ -157,7 +154,7 @@ class WorkHour extends BaseModel
      * @param  Builder<static>  $query
      * @return Builder<static>
      */
-    public function scopeForEmployee(Builder $query, int $employeeId): Builder
+    public function scopeForEmployee(Builder $query, string $employeeId): Builder
     {
         return $query->where('employee_id', $employeeId);
     }
@@ -254,7 +251,7 @@ class WorkHour extends BaseModel
     /**
      * Get the last work hour entry for an employee on a specific date.
      */
-    public static function getLastEntryForEmployee(int $employeeId, ?Carbon $date = null): ?WorkHour
+    public static function getLastEntryForEmployee(string $employeeId, ?Carbon $date = null): ?WorkHour
     {
         $date ??= Carbon::today();
 
@@ -270,7 +267,7 @@ class WorkHour extends BaseModel
     /**
      * Get the next expected action for an employee based on their last entry.
      */
-    public static function getNextAction(int $employeeId, ?Carbon $date = null): string
+    public static function getNextAction(string $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 
@@ -290,7 +287,7 @@ class WorkHour extends BaseModel
     /**
      * Validate if a new entry is allowed based on the last entry.
      */
-    public static function isValidNextEntry(int $employeeId, string $type, ?Carbon $date = null): bool
+    public static function isValidNextEntry(string $employeeId, string $type, ?Carbon $date = null): bool
     {
         $expectedAction = static::getNextAction($employeeId, $date);
 
@@ -303,7 +300,7 @@ class WorkHour extends BaseModel
      * @return Collection<int, WorkHour>
      */
     public static function getTodayEntries(
-        int $employeeId,
+        string $employeeId,
         ?Carbon $date = null,
     ): Collection {
         $date ??= Carbon::today();
@@ -323,7 +320,7 @@ class WorkHour extends BaseModel
      *
      * @return float Hours worked
      */
-    public static function calculateWorkedHours(int $employeeId, ?Carbon $date = null): float
+    public static function calculateWorkedHours(string $employeeId, ?Carbon $date = null): float
     {
         $entries = static::getTodayEntries($employeeId, $date);
 
@@ -370,7 +367,7 @@ class WorkHour extends BaseModel
     /**
      * Get the current status for an employee.
      */
-    public static function getCurrentStatus(int $employeeId, ?Carbon $date = null): string
+    public static function getCurrentStatus(string $employeeId, ?Carbon $date = null): string
     {
         $lastEntry = static::getLastEntryForEmployee($employeeId, $date);
 

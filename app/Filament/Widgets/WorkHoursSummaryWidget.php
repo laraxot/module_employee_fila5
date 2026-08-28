@@ -25,8 +25,7 @@ class WorkHoursSummaryWidget extends XotBaseSchemaWidget
         $startOfWeek = now()->startOfWeek();
         $endOfWeek = now()->endOfWeek();
 
-        /** @var int $employeeId */
-        $employeeId = (int) (Auth::id() ?? 0);
+        $employeeId = (string) (Auth::id() ?? '');
 
         $workHours = WorkHour::query()
             ->where('employee_id', $employeeId)
@@ -46,7 +45,7 @@ class WorkHoursSummaryWidget extends XotBaseSchemaWidget
             $totalHours += $hoursForDay;
         }
 
-        $daysWorked = count(array_filter($dailyHours, fn ($hours) => $hours > 0));
+        $daysWorked = count(array_filter($dailyHours, fn (float $hours) => $hours > 0));
         $averageHoursPerDay = $daysWorked > 0 ? round($totalHours / $daysWorked, 2) : 0;
 
         return [

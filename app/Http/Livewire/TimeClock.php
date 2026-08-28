@@ -13,6 +13,7 @@ use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
 use Throwable;
+use Webmozart\Assert\Assert;
 
 class TimeClock extends Component
 {
@@ -65,6 +66,9 @@ class TimeClock extends Component
             return;
         }
 
+        $employeeId = $this->employee->id;
+        Assert::string($employeeId);
+
         try {
             $now = Carbon::now();
             if ($now->hour < 6 || $now->hour > 22) {
@@ -77,7 +81,7 @@ class TimeClock extends Component
                 return;
             }
 
-            if (! WorkHour::isValidNextEntry($this->employee->id, $this->nextAction)) {
+            if (! WorkHour::isValidNextEntry($employeeId, $this->nextAction)) {
                 $this->showNotification(
                     'Invalid Action',
                     'This action is not valid based on your current status',
@@ -88,7 +92,7 @@ class TimeClock extends Component
             }
 
             WorkHour::create([
-                'employee_id' => $this->employee->id,
+                'employee_id' => $employeeId,
                 'badge_id' => $this->employee->employee_code,
                 'timestamp' => $now,
                 'type' => $this->nextAction,
@@ -122,10 +126,13 @@ class TimeClock extends Component
         $this->currentDate = $now->format('d/m/Y');
 
         if ($this->employee) {
-            $this->lastEntry = WorkHour::getLastEntryForEmployee($this->employee->id);
-            $this->nextAction = (string) WorkHour::getNextAction($this->employee->id);
-            $this->currentStatus = (string) WorkHour::getCurrentStatus($this->employee->id);
-            $this->workedHours = (float) WorkHour::calculateWorkedHours($this->employee->id);
+            $employeeId = $this->employee->id;
+            Assert::string($employeeId);
+
+            $this->lastEntry = WorkHour::getLastEntryForEmployee($employeeId);
+            $this->nextAction = WorkHour::getNextAction($employeeId);
+            $this->currentStatus = WorkHour::getCurrentStatus($employeeId);
+            $this->workedHours = WorkHour::calculateWorkedHours($employeeId);
         }
     }
 
@@ -137,7 +144,10 @@ class TimeClock extends Component
             return;
         }
 
-        $entries = WorkHour::getTodayEntries($this->employee->id);
+        $employeeId = $this->employee->id;
+        Assert::string($employeeId);
+
+        $entries = WorkHour::getTodayEntries($employeeId);
         /** @var array<int, array{time: string, type: string}> $mappedEntries */
         $mappedEntries = [];
         foreach ($entries as $entry) {
