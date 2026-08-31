@@ -37,7 +37,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property-read string $formatted_time
  * @property-read string $formatted_timestamp
  * @property-read ProfileContract|null $updater
- *
  * @method static Builder<static>|TimeRecord forDate(\Carbon\Carbon $date)
  * @method static Builder<static>|TimeRecord forUser(int|string $userId)
  * @method static Builder<static>|TimeRecord newModelQuery()
@@ -45,11 +44,8 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|TimeRecord ofType(string $type)
  * @method static Builder<static>|TimeRecord query()
  * @method static Builder<static>|TimeRecord valid()
- *
  * @property-read ProfileContract|null $deleter
- *
  * @method static TimeRecordFactory factory($count = null, $state = [])
- *
  * @mixin \Eloquent
  */
 class TimeRecord extends BaseModel

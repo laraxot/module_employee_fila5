@@ -30,12 +30,18 @@ use Modules\Employee\Database\Factories\AbsenceRequestFactory;
  * @property Carbon|null $deleted_at
  * @property-read Employee|null $user
  * @property-read Employee|null $decidedBy
- *
  * @method static AbsenceRequestFactory factory($count = null, $state = [])
  * @method static Builder<static>|AbsenceRequest newModelQuery()
  * @method static Builder<static>|AbsenceRequest newQuery()
  * @method static Builder<static>|AbsenceRequest query()
- *
+ * @property-read \Modules\WorkOrder\Models\Profile|null $creator
+ * @property-read \Modules\WorkOrder\Models\Profile|null $deleter
+ * @property-read \Modules\WorkOrder\Models\Profile|null $updater
+ * @method static Builder<static>|AbsenceRequest forUser(string|int $userId)
+ * @method static Builder<static>|AbsenceRequest onlyTrashed()
+ * @method static Builder<static>|AbsenceRequest pending()
+ * @method static Builder<static>|AbsenceRequest withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|AbsenceRequest withoutTrashed()
  * @mixin \Eloquent
  */
 class AbsenceRequest extends BaseModel

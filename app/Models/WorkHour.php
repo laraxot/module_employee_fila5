@@ -39,7 +39,6 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property-read string $formatted_date_time
  * @property-read string $formatted_time
  * @property-read ProfileContract|null $updater
- *
  * @method static Builder<static>|WorkHour forDate(\Carbon\Carbon $date)
  * @method static Builder<static>|WorkHour forEmployee(int $employeeId)
  * @method static Builder<static>|WorkHour newModelQuery()
@@ -62,11 +61,8 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|WorkHour whereTimestamp($value)
  * @method static Builder<static>|WorkHour whereType($value)
  * @method static Builder<static>|WorkHour whereUpdatedAt($value)
- *
  * @property-read ProfileContract|null $deleter
- *
  * @method static WorkHourFactory factory($count = null, $state = [])
- *
  * @mixin \Eloquent
  */
 class WorkHour extends BaseModel
