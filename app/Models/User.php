@@ -107,6 +107,7 @@ use Spatie\ModelStates\HasStatesContract;
  * @property-read int|null $tokens_count
  * @property-read Collection<int, Treatment> $treatments
  * @property-read int|null $treatments_count
+ *
  * @method static UserFactory factory($count = null, $state = [])
  * @method static Builder<static>|User newModelQuery()
  * @method static Builder<static>|User newQuery()
@@ -140,14 +141,7 @@ use Spatie\ModelStates\HasStatesContract;
  * @method static Builder<static>|User whereUpdatedBy($value)
  * @method static Builder<User> withoutPermission($permissions)
  * @method static Builder<User> withoutRole($roles, $guard = null)
- * @property-read Collection<int, Team> $membershipTeams
- * @property-read int|null $membership_teams_count
- * @property-read Collection<int, \Modules\User\Models\OauthClient> $oauthApps
- * @property-read int|null $oauth_apps_count
- * @method static Builder<static>|User childrenWith(array $relations)
- * @method static Builder<static>|User childrenWithCount(array $relations)
- * @method static Builder<static>|User team($teams, bool $without = false)
- * @method static Builder<static>|User withoutTeam($teams)
+ *
  * @mixin \Eloquent
  */
 class User extends BaseUser implements HasMedia, HasStatesContract

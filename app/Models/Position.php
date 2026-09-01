@@ -27,10 +27,12 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property-read ProfileContract|null $creator
  * @property-read ProfileContract|null $deleter
  * @property-read ProfileContract|null $updater
+ *
  * @method static PositionFactory factory($count = null, $state = [])
  * @method static Builder<static>|Position newModelQuery()
  * @method static Builder<static>|Position newQuery()
  * @method static Builder<static>|Position query()
+ *
  * @mixin \Eloquent
  */
 class Position extends BaseModel

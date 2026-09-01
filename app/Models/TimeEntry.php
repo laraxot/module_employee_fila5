@@ -47,6 +47,7 @@ use Modules\Xot\Contracts\ProfileContract;
  * @property-read ProfileContract|null $creator
  * @property-read ProfileContract|null $deleter
  * @property-read ProfileContract|null $updater
+ *
  * @method static TimeEntryFactory factory($count = null, $state = [])
  * @method static Builder<static>|TimeEntry forEmployee(int $employeeId)
  * @method static Builder<static>|TimeEntry newModelQuery()
@@ -83,6 +84,7 @@ use Modules\Xot\Contracts\ProfileContract;
  * @method static Builder<static>|TimeEntry whereTimestamp($value)
  * @method static Builder<static>|TimeEntry whereType($value)
  * @method static Builder<static>|TimeEntry withAnomalies()
+ *
  * @mixin \Eloquent
  */
 final class TimeEntry extends BaseModel
