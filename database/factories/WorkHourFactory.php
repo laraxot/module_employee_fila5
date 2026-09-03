@@ -82,7 +82,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $clockIn;
 
-        $breakStartTime = $clockInTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
+        $breakStartTime = $clockInTime->copy()->addHours($this->faker->numberBetween(3, 5));
         /** @var WorkHour $breakStart */
         $breakStart = $this->state([
             'employee_id' => $employeeId,
@@ -92,7 +92,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $breakStart;
 
-        $breakEndTime = $breakStartTime->copy()->addMinutes((int) $this->faker->numberBetween(30, 60));
+        $breakEndTime = $breakStartTime->copy()->addMinutes($this->faker->numberBetween(30, 60));
         /** @var WorkHour $breakEnd */
         $breakEnd = $this->state([
             'employee_id' => $employeeId,
@@ -102,7 +102,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $breakEnd;
 
-        $clockOutTime = $breakEndTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
+        $clockOutTime = $breakEndTime->copy()->addHours($this->faker->numberBetween(3, 5));
         /** @var WorkHour $clockOut */
         $clockOut = $this->state([
             'employee_id' => $employeeId,
