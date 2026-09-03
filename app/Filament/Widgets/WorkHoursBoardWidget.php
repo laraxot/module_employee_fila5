@@ -91,8 +91,9 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
      */
     public function loadWidgetData(): void
     {
-        /** @var int $userId */
-        $userId = (int) (Auth::id() ?? 0);
+        // L'id utente e' un UUID: il cast a int lo azzererebbe e il widget
+        // mostrerebbe le ore di nessuno.
+        $userId = (string) (Auth::id() ?? '');
 
         // 1. Dati base timbrature (WorkHour-based Action)
         $baseData = app(BuildWorkHoursForRangeAction::class)->execute($userId, $this->weekStart, $this->weekEnd);
@@ -184,10 +185,10 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
         $contractMinutes = 0;
 
         if (is_array($summary)) {
-            $workedMinutes = is_numeric($summary['workedMinutes'] ?? null) ? (int) $summary['workedMinutes'] : 0;
-            $addedMinutes = is_numeric($summary['addedMinutes'] ?? null) ? (int) $summary['addedMinutes'] : 0;
-            $reducedMinutes = is_numeric($summary['reducedMinutes'] ?? null) ? (int) $summary['reducedMinutes'] : 0;
-            $contractMinutes = is_numeric($summary['contractMinutes'] ?? null) ? (int) $summary['contractMinutes'] : 0;
+            $workedMinutes = (int) ($summary['workedMinutes'] ?? 0);
+            $addedMinutes = (int) ($summary['addedMinutes'] ?? 0);
+            $reducedMinutes = (int) ($summary['reducedMinutes'] ?? 0);
+            $contractMinutes = (int) ($summary['contractMinutes'] ?? 0);
         }
 
         return [
@@ -244,8 +245,9 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
      */
     public function exportData(): void
     {
-        /** @var int $userId */
-        $userId = (int) (Auth::id() ?? 0);
+        // L'id utente e' un UUID: il cast a int lo azzererebbe e il widget
+        // mostrerebbe le ore di nessuno.
+        $userId = (string) (Auth::id() ?? '');
 
         app(ExportTimeDataAction::class)
             ->onQueue('exports')

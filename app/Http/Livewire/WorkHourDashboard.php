@@ -12,7 +12,6 @@ use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\WorkHour;
-use Webmozart\Assert\Assert;
 
 class WorkHourDashboard extends Component
 {
@@ -41,7 +40,7 @@ class WorkHourDashboard extends Component
         'refreshDashboard' => 'refreshStats',
     ];
 
-    public function mount(?string $employeeId = null): void
+    public function mount(?int $employeeId = null): void
     {
         if ($employeeId !== null) {
             /** @var Employee|null $employee */
@@ -99,10 +98,7 @@ class WorkHourDashboard extends Component
             return;
         }
 
-        $employeeId = $this->employee->id;
-        Assert::string($employeeId);
-
-        $this->todayHours = WorkHour::calculateWorkedHours($employeeId);
+        $this->todayHours = (float) WorkHour::calculateWorkedHours($this->employee->id);
     }
 
     private function calculateWeeklyStats(): void
@@ -114,20 +110,17 @@ class WorkHourDashboard extends Component
             return;
         }
 
-        $employeeId = $this->employee->id;
-        Assert::string($employeeId);
-
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
 
-        $this->weekHours = WorkHour::calculateWorkedHours($employeeId, $startOfWeek);
+        $this->weekHours = (float) WorkHour::calculateWorkedHours($this->employee->id, $startOfWeek);
 
         $this->weeklyStats = [];
 
         // Build proper weekly stats array
         for ($i = 0; $i < 7; $i++) {
             $date = $startOfWeek->copy()->addDays($i);
-            $dayHours = WorkHour::calculateWorkedHours($employeeId, $date);
+            $dayHours = WorkHour::calculateWorkedHours($this->employee->id, $date);
             $this->weeklyStats[] = [
                 'date' => $date->format('Y-m-d'),
                 'day' => $date->format('D'),
@@ -146,13 +139,10 @@ class WorkHourDashboard extends Component
             return;
         }
 
-        $employeeId = $this->employee->id;
-        Assert::string($employeeId);
-
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
 
-        $this->monthHours = WorkHour::calculateWorkedHours($employeeId, $startOfMonth);
+        $this->monthHours = (float) WorkHour::calculateWorkedHours($this->employee->id, $startOfMonth);
 
         $this->monthlyStats = [];
 
@@ -168,7 +158,7 @@ class WorkHourDashboard extends Component
             $weekHours = 0.0;
             $tempDate = $currentWeek->copy();
             while ($tempDate->lte($weekEnd)) {
-                $weekHours += WorkHour::calculateWorkedHours($employeeId, $tempDate);
+                $weekHours += WorkHour::calculateWorkedHours($this->employee->id, $tempDate);
                 $tempDate->addDay();
             }
 
@@ -193,10 +183,7 @@ class WorkHourDashboard extends Component
             return;
         }
 
-        $employeeId = $this->employee->id;
-        Assert::string($employeeId);
-
-        $entries = WorkHour::getTodayEntries($employeeId);
+        $entries = WorkHour::getTodayEntries($this->employee->id);
         $mappedEntries = [];
         foreach ($entries as $entry) {
             $mappedEntries[] = [
