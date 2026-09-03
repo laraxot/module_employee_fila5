@@ -7,40 +7,48 @@ namespace Modules\Employee\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Modules\TechPlanner\Models\Profile;
+use Modules\Employee\Database\Factories\TimeRecordFactory;
 use Modules\User\Models\User;
+use Modules\Xot\Contracts\ProfileContract;
 
 /**
  * Class TimeRecord.
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon $timestamp
+ * @property int $user_id
+ * @property Carbon $timestamp
  * @property string $type
- * @property bool $is_manual
- * @property string|null $method
- * @property float|null $latitude
- * @property float|null $longitude
+ * @property string $method
+ * @property string|null $latitude
+ * @property string|null $longitude
  * @property string|null $address
  * @property string|null $notes
- * @property string|null $status
+ * @property string $status
+ * @property bool $is_manual
  * @property int|null $created_by
  * @property int|null $updated_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read User $user
  * @property-read User|null $createdBy
- * @property-read Profile|null $creator
+ * @property-read User|null $updatedBy
+ * @property-read ProfileContract|null $creator
  * @property-read string $formatted_date
  * @property-read string $formatted_time
  * @property-read string $formatted_timestamp
- * @property-read User|null $updatedBy
- * @property-read Profile|null $updater
- * @property-read User|null $user
+ * @property-read ProfileContract|null $updater
  *
  * @method static Builder<static>|TimeRecord forDate(\Carbon\Carbon $date)
- * @method static Builder<static>|TimeRecord forUser(int $userId)
+ * @method static Builder<static>|TimeRecord forUser(int|string $userId)
  * @method static Builder<static>|TimeRecord newModelQuery()
  * @method static Builder<static>|TimeRecord newQuery()
  * @method static Builder<static>|TimeRecord ofType(string $type)
  * @method static Builder<static>|TimeRecord query()
  * @method static Builder<static>|TimeRecord valid()
+ *
+ * @property-read ProfileContract|null $deleter
+ *
+ * @method static TimeRecordFactory factory($count = null, $state = [])
  *
  * @mixin \Eloquent
  */
@@ -117,7 +125,7 @@ class TimeRecord extends BaseModel
      * @param  Builder<static>  $query
      * @return Builder<static>
      */
-    public function scopeForUser(Builder $query, int $userId): Builder
+    public function scopeForUser($query, int|string $userId)
     {
         return $query->where('user_id', $userId);
     }
@@ -128,7 +136,7 @@ class TimeRecord extends BaseModel
      * @param  Builder<static>  $query
      * @return Builder<static>
      */
-    public function scopeOfType(Builder $query, string $type): Builder
+    public function scopeOfType($query, string $type)
     {
         return $query->where('type', $type);
     }
@@ -139,7 +147,7 @@ class TimeRecord extends BaseModel
      * @param  Builder<static>  $query
      * @return Builder<static>
      */
-    public function scopeForDate(Builder $query, Carbon $date): Builder
+    public function scopeForDate($query, Carbon $date)
     {
         return $query->whereDate('timestamp', $date);
     }
@@ -150,7 +158,7 @@ class TimeRecord extends BaseModel
      * @param  Builder<static>  $query
      * @return Builder<static>
      */
-    public function scopeValid(Builder $query): Builder
+    public function scopeValid($query)
     {
         return $query->where('status', 'valid');
     }

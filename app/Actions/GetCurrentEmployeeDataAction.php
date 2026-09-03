@@ -20,16 +20,16 @@ class GetCurrentEmployeeDataAction
     /**
      * Execute employee data retrieval.
      *
-     * @return array{id: string|null, name: string, email: string|null, status: string, employeeNumber?: string, hireDate?: string, department?: array{id: int, name: string}, position?: array{id: int, name: string}}
+     * @return array{id: int|string, name: string, email: string, status: string, employeeNumber?: string, hireDate?: string, department?: array{id: int, name: string}, position?: array{id: int, name: string}}
      */
-    public function execute(int $userId): array
+    public function execute(int|string $userId): array
     {
         /** @var User|null $user */
         $user = User::find($userId);
 
         if (! $user) {
             return [
-                'id' => (string) $userId,
+                'id' => $userId,
                 'name' => 'Unknown User',
                 'email' => '',
                 'status' => 'unknown',
