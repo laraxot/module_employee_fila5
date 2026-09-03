@@ -9,6 +9,8 @@ use Filament\Notifications\Notification;
 use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Filament\Resources\WorkHourResource;
 use Modules\Employee\Models\WorkHour;
+use Modules\Xot\Actions\Cast\SafeIntCastAction;
+use Modules\Xot\Actions\Cast\SafeStringCastAction;
 use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
 class CreateWorkHour extends XotBaseCreateRecord
@@ -35,21 +37,11 @@ class CreateWorkHour extends XotBaseCreateRecord
     {
         $data = $this->form->getState();
 
-<<<<<<< .merge_file_MlY1UH
-=======
-<<<<<<< .merge_file_vLGPvf
->>>>>>> .merge_file_YkUn0R
-        $timestampRaw = $data['timestamp'] ?? null;
-        $timestamp = Carbon::parse(is_string($timestampRaw) ? $timestampRaw : 'now');
-        $employeeIdRaw = $data['employee_id'] ?? null;
-        $employeeId = is_int($employeeIdRaw) ? $employeeIdRaw : 0;
-<<<<<<< .merge_file_MlY1UH
-=======
-=======
-        $timestamp = Carbon::parse((string) ($data['timestamp'] ?? ''));
-        $employeeId = (int) ($data['employee_id'] ?? 0);
->>>>>>> .merge_file_2eYHTm
->>>>>>> .merge_file_YkUn0R
+        $timestampRaw = is_string($data['timestamp'] ?? null) ? $data['timestamp'] : '';
+        /** @var int $employeeIdRaw */
+        $employeeIdRaw = is_numeric($data['employee_id'] ?? null) ? (int) $data['employee_id'] : 0;
+        $timestamp = Carbon::parse(SafeStringCastAction::cast($timestampRaw)); // @phpstan-ignore cast.string
+        $employeeId = SafeIntCastAction::cast($employeeIdRaw); // @phpstan-ignore cast.int
 
         $existingEntry = WorkHour::query()
             ->where('employee_id', $employeeId)
