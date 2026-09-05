@@ -1,59 +1,34 @@
 # Feature Documentation
 
-This directory contains detailed documentation for all Employee module features.
+[![Module](https://img.shields.io/badge/Module-Feature Documentation-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Contents
+> **Core module for the FixCity Platform.**
 
-- **[work_hour.md](work_hour.md)** - Work hour tracking and time management functionality
-- **[workhour_implementation.md](workhour_implementation.md)** - Technical implementation of work hour system
-- **[functional_requirements.md](functional_requirements.md)** - Business requirements and specifications
-- **[functional_strategy.md](functional_strategy.md)** - Implementation strategy and approach
-- **[features_specification.md](features_specification.md)** - Detailed feature specifications
+## Perché esiste
 
-## Core Features
+Core module for the FixCity Platform.
 
-### 1. Employee Management
-- Employee registry and profiles
-- Department and position assignment
-- Contact information management
-- Employment history tracking
+## Superpoteri
 
-### 2. Time Tracking System
-- Clock-in/clock-out functionality
-- Break time management
-- Overtime calculation
-- Real-time presence monitoring
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-### 3. Leave Management
-- Vacation request workflow
-- Sick leave tracking
-- Permission management
-- Approval processes
+## Documentazione
 
-### 4. Attendance Management
-- Daily attendance tracking
-- Absence management
-- Schedule compliance monitoring
-- Reporting and analytics
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-### 5. Document Management
-- Employee document storage
-- Contract management
-- Payroll document handling
-- Digital signature support
+---
 
-## Feature Status
-
-| Feature | Status | Priority | Notes |
-|---------|--------|----------|-------|
-| Employee Registry | ✅ Complete | High | Core functionality implemented |
-| Time Tracking | ✅ Complete | High | Real-time widgets implemented |
-| Leave Management | 🚧 In Progress | Medium | Basic structure in place |
-| Document Management | 📋 Planned | Medium | Design phase |
-| Mobile PWA | 📋 Planned | Low | Future enhancement |
-
-## Related Documentation
-
-- [Architecture Overview](../architecture/README.md)
-- [Implementation Guides](../implementation/README.md)
-- [Development Guides](../development/README.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5
