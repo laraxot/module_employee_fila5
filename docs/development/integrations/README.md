@@ -1,46 +1,34 @@
 # Integrations Development Guide
 
-This directory contains development guides for external system integrations.
+[![Module](https://img.shields.io/badge/Module-Integrations Development Guide-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Overview
+> **Core module for the FixCity Platform.**
 
-The integration system provides:
-- Labor consultant system integration
-- Payroll system connectivity
-- External HR system APIs
-- Data synchronization workflows
-- Third-party service integrations
+## Perché esiste
 
-## Implementation Status
+Core module for the FixCity Platform.
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| API Framework | 📋 Planned | RESTful API foundation |
-| Labor Consultant Integration | 📋 Planned | Professional service integration |
-| Payroll System Sync | 📋 Planned | Payroll data synchronization |
-| External APIs | 📋 Planned | Third-party service connections |
+## Superpoteri
 
-## Development Files
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-- **labor-consultants.md** - Labor consultant integration
-- **payroll-systems.md** - Payroll system integration
-- **api.md** - API development and documentation
+## Documentazione
 
-## Key Components
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-- `APIController` - External API endpoints
-- `DataSyncService` - Data synchronization logic
-- `IntegrationConfig` - Integration configuration
-- `WebhookHandler` - Webhook processing
+---
 
-## Integration Patterns
-
-- **RESTful APIs** - Standard HTTP API endpoints
-- **Webhook Processing** - Real-time event handling
-- **Data Synchronization** - Scheduled data sync
-- **Authentication** - Secure API access
-
-## Related Documentation
-
-- [Architecture: Technical Architecture](../../architecture/technical_architecture.md)
-- [Implementation: Technical Implementation Guide](../../implementation/technical_implementation_guide.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5
