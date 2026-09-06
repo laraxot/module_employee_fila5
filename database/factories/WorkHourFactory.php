@@ -66,8 +66,8 @@ class WorkHourFactory extends Factory
     {
         $entries = [];
 
-        $clockInHour = (int) $this->faker->numberBetween(8, 9);
-        $clockInMinute = (int) $this->faker->randomElement([0, 15, 30, 45]);
+        $clockInHour = is_int($this->faker->numberBetween(8, 9)) ? $this->faker->numberBetween(8, 9) : 8;
+        $clockInMinute = is_int($this->faker->randomElement([0, 15, 30, 45])) ? $this->faker->randomElement([0, 15, 30, 45]) : 0;
         $clockInTime = $date->copy()->setTime(
             $clockInHour,
             $clockInMinute,
