@@ -1,38 +1,34 @@
 # Analysis Documentation
 
-This directory contains research and analysis documentation for the Employee module.
+[![Module](https://img.shields.io/badge/Module-Analysis Documentation-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Contents
+> **Core module for the FixCity Platform.**
 
-- **[dipendentincloud_analysis.md](dipendentincloud_analysis.md)** - Analysis of the reference DipendentiInCloud system
-- **[language_best_practices.md](language_best_practices.md)** - Language standards and naming conventions
+## Perché esiste
 
-## Analysis Overview
+Core module for the FixCity Platform.
 
-### Reference System Analysis
-The Employee module implementation is informed by comprehensive analysis of existing HR management systems, particularly focusing on:
+## Superpoteri
 
-- **DipendentiInCloud System** - Feature analysis and best practices extraction
-- **Industry Standards** - HR management system conventions and patterns
-- **User Experience Research** - Interface design and workflow optimization
-- **Technical Architecture Review** - Scalability and performance considerations
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-### Language and Naming Standards
-Comprehensive guidelines for:
-- Database naming conventions (English-only requirement)
-- Code structure and organization
-- Translation file management
-- Documentation standards
+## Documentazione
 
-## Key Findings
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-1. **Multi-tenant Architecture** - Essential for scalable HR systems
-2. **Real-time Updates** - Critical for time tracking and presence monitoring
-3. **Mobile-first Design** - Increasing importance of mobile accessibility
-4. **Integration Capabilities** - Need for external system connectivity
+---
 
-## Related Documentation
-
-- [Architecture Overview](../architecture/README.md)
-- [Implementation Guides](../implementation/README.md)
-- [Feature Specifications](../features/README.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5

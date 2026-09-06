@@ -1,39 +1,34 @@
 # Organizational Management Development Guide
 
-This directory contains development guides for organizational structure management.
+[![Module](https://img.shields.io/badge/Module-Organizational Management Development Guide-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Overview
+> **Core module for the FixCity Platform.**
 
-The organizational management system handles:
-- Department structure and hierarchy
-- Position definitions and requirements
-- Organizational chart management
-- Reporting relationships
-- Team assignments
+## Perché esiste
 
-## Implementation Status
+Core module for the FixCity Platform.
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Department Model | ✅ Complete | Basic department structure |
-| Position Model | ✅ Complete | Job position definitions |
-| Hierarchy Management | 🚧 In Progress | Organizational tree structure |
-| Team Management | 📋 Planned | Team assignment system |
+## Superpoteri
 
-## Development Files
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-- **departments.md** - Department management implementation
-- **positions.md** - Position management system
-- **hierarchy.md** - Organizational hierarchy structure
+## Documentazione
 
-## Key Models
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-- `Department` - Department structure
-- `Position` - Job positions and roles
-- `Team` - Team organization
-- `OrganizationalUnit` - Hierarchical units
+---
 
-## Related Documentation
-
-- [Architecture: Data Architecture](../../architecture/data_architecture.md)
-- [Features: Functional Strategy](../../features/functional_strategy.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5

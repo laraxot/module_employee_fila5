@@ -1,39 +1,34 @@
 # Leave Management Development Guide
 
-This directory contains development guides for vacation, sick leave, and permission management systems.
+[![Module](https://img.shields.io/badge/Module-Leave Management Development Guide-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Overview
+> **Core module for the FixCity Platform.**
 
-The leave management system provides:
-- Vacation request workflow
-- Sick leave tracking and documentation
-- Permission request system
-- Approval workflow management
-- Leave balance calculations
+## Perché esiste
 
-## Implementation Status
+Core module for the FixCity Platform.
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Leave Request Model | 📋 Planned | Core leave request structure |
-| Approval Workflow | 📋 Planned | Multi-step approval process |
-| Balance Calculation | 📋 Planned | Leave balance tracking |
-| Calendar Integration | 📋 Planned | Calendar view of leaves |
+## Superpoteri
 
-## Development Files
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-- **vacation.md** - Vacation management system
-- **permissions.md** - Permission request handling
-- **workflow.md** - Approval workflow implementation
+## Documentazione
 
-## Key Components
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-- `LeaveRequest` - Leave request model
-- `LeaveType` - Types of leave (vacation, sick, etc.)
-- `ApprovalWorkflow` - Approval process management
-- `LeaveBalance` - Employee leave balance tracking
+---
 
-## Related Documentation
-
-- [Features: Functional Requirements](../../features/functional_requirements.md)
-- [Implementation: Workflows](../../implementation/workflows_and_best_practices.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5

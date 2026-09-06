@@ -78,15 +78,15 @@ class TimeClockPage extends XotBasePage implements HasTable
             ->filters([
                 Filter::make('date_range')
                     ->label('Date Range')
-                    ->schema([
+                    ->form([
                         DatePicker::make('date_from')
                             ->label('From'),
                         DatePicker::make('date_to')
                             ->label('To'),
                     ])
                     ->query(fn (Builder $query, array $data): Builder => $query
-                        ->when(is_string($data['date_from'] ?? null) && $data['date_from'] !== '', fn (Builder $query): Builder => $query->whereDate('timestamp', '>=', is_string($data['date_from'] ?? null) ? $data['date_from'] : ''))
-                        ->when(is_string($data['date_to'] ?? null) && $data['date_to'] !== '', fn (Builder $query): Builder => $query->whereDate('timestamp', '<=', is_string($data['date_to'] ?? null) ? $data['date_to'] : ''))),
+                        ->when(isset($data['date_from']) && $data['date_from'], fn (Builder $query): Builder => $query->whereDate('timestamp', '>=', (string) $data['date_from']))
+                        ->when(isset($data['date_to']) && $data['date_to'], fn (Builder $query): Builder => $query->whereDate('timestamp', '<=', (string) $data['date_to']))),
                 SelectFilter::make('type')
                     ->label('Type')
                     ->options(WorkHourTypeEnum::class),

@@ -1,39 +1,34 @@
 # Communication Development Guide
 
-This directory contains development guides for internal communication systems.
+[![Module](https://img.shields.io/badge/Module-Communication Development Guide-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Overview
+> **Core module for the FixCity Platform.**
 
-The communication system provides:
-- Digital bulletin board for announcements
-- Internal messaging between employees
-- Notification system for important updates
-- Communication workflow management
-- Message archiving and search
+## Perché esiste
 
-## Implementation Status
+Core module for the FixCity Platform.
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Bulletin Board | 📋 Planned | Digital announcement system |
-| Internal Messaging | 📋 Planned | Employee-to-employee messaging |
-| Notification System | 📋 Planned | System-wide notifications |
-| Message Archive | 📋 Planned | Message storage and search |
+## Superpoteri
 
-## Development Files
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-- **bulletin-board.md** - Digital bulletin board implementation
-- **notifications.md** - Notification system design
-- **messaging.md** - Internal messaging system
+## Documentazione
 
-## Key Components
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-- `Announcement` - Bulletin board announcements
-- `Message` - Internal messaging
-- `Notification` - System notifications
-- `CommunicationChannel` - Communication channels
+---
 
-## Related Documentation
-
-- [Features: Feature Specifications](../../features/features_specification.md)
-- [Implementation: Technical Implementation](../../implementation/technical_implementation.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5

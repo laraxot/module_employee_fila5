@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
-use Filament\Infolists\Components\TextEntry;
+use Filament\Forms\Components\Placeholder;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\AbsenceRequest;
 use Modules\Employee\Models\Employee;
@@ -50,18 +49,18 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
                             Tab::make('monthly')
                                 ->label(__('employee::widgets.leave_balance.monthly'))
                                 ->schema([
-                                    TextEntry::make('monthly_balances')->html()->state(fn (): string => view('employee::widgets.leave-balance.balance-display', [
+                                    Placeholder::make('monthly_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                         'balances' => $this->getMonthlyBalances($employee),
                                         'type' => 'monthly',
-                                    ])->render()),
+                                    ])),
                                 ]),
                             Tab::make('annual')
                                 ->label(__('employee::widgets.leave_balance.annual'))
                                 ->schema([
-                                    TextEntry::make('annual_balances')->html()->state(fn (): string => view('employee::widgets.leave-balance.balance-display', [
+                                    Placeholder::make('annual_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                         'balances' => $this->getAnnualBalances($employee),
                                         'type' => 'annual',
-                                    ])->render()),
+                                    ])),
                                 ]),
                         ])
                         ->activeTab(1),
@@ -126,7 +125,7 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
             ->whereBetween('starts_at', [$from, $to])
             ->get()
             ->groupBy('type')
-            ->map(fn (Collection $requests): int => (int) $requests->sum(
+            ->map(fn ($requests) => (int) $requests->sum(
                 fn (AbsenceRequest $request): int => (int) $request->ends_at->diffInMinutes($request->starts_at)
             ));
 

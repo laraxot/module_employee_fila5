@@ -1,47 +1,34 @@
 # Reporting Development Guide
 
-This directory contains development guides for dashboard, analytics, and report generation systems.
+[![Module](https://img.shields.io/badge/Module-Reporting Development Guide-8B0000.svg)]()
+[![Laravel](https://img.shields.io/badge/Laravel-13-red?style=for-the-badge)](https://laravel.com/)](https://laravel.com/)
+[![Filament](https://img.shields.io/badge/Filament-5-ffab00?style=for-the-badge)](https://filamentphp.com/)](https://filamentphp.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://php.net/)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge)](https://php.net/)](https://phpstan.org/)
+[![PSR-12](https://img.shields.io/badge/Code-PSR--12-blue?style=for-the-badge)](https://www.php-fig.org/psr/psr-12/)](https://www.php-fig.org/psr/psr-12/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular-purple?style=for-the-badge)](https://martinfowler.com/articles/paradigm-shifts.html)]()
+]()
 
-## Overview
+> **Core module for the FixCity Platform.**
 
-The reporting system provides:
-- Real-time dashboard widgets
-- Employee analytics and metrics
-- Custom report generation
-- Data visualization and charts
-- Export functionality
+## Perché esiste
 
-## Implementation Status
+Core module for the FixCity Platform.
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| Dashboard Widgets | ✅ Complete | TimeTracking, Presence, Overview widgets |
-| Basic Analytics | 🚧 In Progress | Employee metrics and KPIs |
-| Report Generation | 📋 Planned | Custom report builder |
-| Data Export | 📋 Planned | CSV, PDF export functionality |
+## Superpoteri
 
-## Development Files
+- Modular component with XotBase patterns
+- Professional-grade implementation
+- Integrated with FixCity Platform
 
-- **dashboard.md** - Dashboard widget implementation
-- **analytics.md** - Analytics system design
-- **reports.md** - Report generation system
+## Documentazione
 
-## Key Components
+| Lingua | Link |
+|--------|------|
+| 🇮🇹 Presentazione | Questo file (`README.md`) |
+| 🇬🇧 Business card | [docs/readme-en.md](./docs/readme-en.md) |
+| 📚 Wiki tecnica | [./docs/wiki/](./docs/) |
 
-- `TimeTrackingWidget` - Real-time time tracking display
-- `TodayPresenceWidget` - Employee presence monitoring
-- `EmployeeOverviewWidget` - Employee statistics overview
-- `ReportGenerator` - Custom report creation
+---
 
-## Widget Architecture
-
-All dashboard widgets follow Laraxot standards:
-- Extend `XotBaseWidget` for compliance
-- Implement `getFormSchema()` method
-- Use translation files for all text
-- Support real-time polling where appropriate
-
-## Related Documentation
-
-- [Features: Work Hour Implementation](../../features/workhour_implementation.md)
-- [Implementation: Technical Implementation Guide](../../implementation/technical_implementation_guide.md)
+**Modulo** `Employee` · **Laraxot** · **FixCity Platform** · PHPStan 10 · Filament 5
