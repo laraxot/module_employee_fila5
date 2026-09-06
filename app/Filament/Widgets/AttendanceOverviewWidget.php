@@ -6,8 +6,8 @@ namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\TextEntry;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
@@ -60,34 +60,31 @@ class AttendanceOverviewWidget extends XotBaseSchemaWidget
                                 ->label(__('employee::widgets.attendance_overview.tabs.absences'))
                                 ->badge($this->getAbsencesCount())
                                 ->schema([
-                                    Placeholder::make(
-                                        'absences_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
-                                        'items' => $this->getAbsences(),
-                                        'type' => 'absences',
-                                    ])),
+                                    TextEntry::make('absences_list')
+                                        ->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getAbsences(),
+                                            'type' => 'absences',
+                                        ])),
                                 ]),
                             Tab::make('smart_working')
                                 ->label(__('employee::widgets.attendance_overview.tabs.smart_working'))
                                 ->badge($this->getSmartWorkingCount())
                                 ->schema([
-                                    Placeholder::make(
-                                        'smart_working_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
-                                        'items' => $this->getSmartWorking(),
-                                        'type' => 'smart_working',
-                                    ])),
+                                    TextEntry::make('smart_working_list')
+                                        ->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getSmartWorking(),
+                                            'type' => 'smart_working',
+                                        ])),
                                 ]),
                             Tab::make('transfers')
                                 ->label(__('employee::widgets.attendance_overview.tabs.transfers'))
                                 ->badge($this->getTransfersCount())
                                 ->schema([
-                                    Placeholder::make(
-                                        'transfers_list',
-                                    )->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
-                                        'items' => $this->getTransfers(),
-                                        'type' => 'transfers',
-                                    ])),
+                                    TextEntry::make('transfers_list')
+                                        ->content(fn (): View => view('employee::widgets.attendance-overview.attendance-list', [
+                                            'items' => $this->getTransfers(),
+                                            'type' => 'transfers',
+                                        ])),
                                 ]),
                         ])
                         ->activeTab(1),

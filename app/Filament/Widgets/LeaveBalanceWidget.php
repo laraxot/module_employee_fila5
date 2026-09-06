@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Employee\Filament\Widgets;
 
 use Carbon\Carbon;
-use Filament\Forms\Components\Placeholder;
+use Filament\Schemas\Components\TextEntry;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
@@ -49,7 +49,7 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
                             Tab::make('monthly')
                                 ->label(__('employee::widgets.leave_balance.monthly'))
                                 ->schema([
-                                    Placeholder::make('monthly_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
+                                    TextEntry::make('monthly_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                         'balances' => $this->getMonthlyBalances($employee),
                                         'type' => 'monthly',
                                     ])),
@@ -57,7 +57,7 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
                             Tab::make('annual')
                                 ->label(__('employee::widgets.leave_balance.annual'))
                                 ->schema([
-                                    Placeholder::make('annual_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
+                                    TextEntry::make('annual_balances')->content(fn () => view('employee::widgets.leave-balance.balance-display', [
                                         'balances' => $this->getAnnualBalances($employee),
                                         'type' => 'annual',
                                     ])),
