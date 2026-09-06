@@ -19,12 +19,14 @@
 - **AbsenceType** — Enum-like (vacation, sick, unpaid)
 - **Schedule** — Work calendar (shifts, on-call)
 
-### Actions (8)
+### Actions (10)
 - `CreateAbsenceRequestAction` — Submit request
 - `ApproveAbsenceRequestAction` — Manager approval
 - `BuildWeeklyTimeTableAction` — Calculate weekly hours
 - `BuildTimelineVisualizationAction` — Gantt chart for absences
 - `BuildWorkHoursForRangeAction` — Total hours in date range
+- `ExportTimeDataAction` — Export time tracking data to CSV
+- `GetCurrentEmployeeDataAction` — Fetch current employee profile and status
 
 ---
 
@@ -58,13 +60,13 @@
 │ Employee (HR)            │
 ├──────────────────────────┤
 │ Models: 10               │
-│ Migrations: 6            │
-│ Actions: 8               │
+│ Migrations: 7            │
+│ Actions: 10              │
 │ Status: Stable           │
 └──────────────────────────┘
 ```
 
 ---
 
-- **Generated**: 2026-09-06
+- **Last verified**: 2026-09-06 (module closure workflow)
 
