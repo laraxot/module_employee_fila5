@@ -35,5 +35,5 @@ it('stores user ids as strings, not integers', function (): void {
         }
     }
 
-    expect($numeric)->toBe([], 'Colonne numeriche: un id UUID viene troncato');
+    expect($numeric)->toEqual([], 'Colonne numeriche: un id UUID viene troncato');
 });
