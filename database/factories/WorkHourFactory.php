@@ -30,8 +30,8 @@ class WorkHourFactory extends Factory
         $hour = $this->faker->numberBetween(8, 18);
         $minute = $this->faker->randomElement([0, 15, 30, 45]);
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            is_int($hour) ? $hour : 8,
-            is_int($minute) ? $minute : 0,
+            is_int($hour) ? $hour : ((int) $hour),
+            is_int($minute) ? $minute : ((int) $minute),
             0,
         );
 
@@ -67,8 +67,8 @@ class WorkHourFactory extends Factory
         $entries = [];
 
         $clockInTime = $date->copy()->setTime(
-            is_int($hour = $this->faker->numberBetween(8, 9)) ? $hour : 8,
-            is_int($minute = $this->faker->randomElement([0, 15, 30, 45])) ? $minute : 0,
+            (int) $this->faker->numberBetween(8, 9),
+            (int) $this->faker->randomElement([0, 15, 30, 45]),
             0,
         );
 
@@ -81,7 +81,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $clockIn;
 
-        $breakStartTime = $clockInTime->copy()->addHours($this->faker->numberBetween(3, 5));
+        $breakStartTime = $clockInTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
         /** @var WorkHour $breakStart */
         $breakStart = $this->state([
             'employee_id' => $employeeId,
@@ -91,7 +91,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $breakStart;
 
-        $breakEndTime = $breakStartTime->copy()->addMinutes($this->faker->numberBetween(30, 60));
+        $breakEndTime = $breakStartTime->copy()->addMinutes((int) $this->faker->numberBetween(30, 60));
         /** @var WorkHour $breakEnd */
         $breakEnd = $this->state([
             'employee_id' => $employeeId,
@@ -101,7 +101,7 @@ class WorkHourFactory extends Factory
         ])->make();
         $entries[] = $breakEnd;
 
-        $clockOutTime = $breakEndTime->copy()->addHours($this->faker->numberBetween(3, 5));
+        $clockOutTime = $breakEndTime->copy()->addHours((int) $this->faker->numberBetween(3, 5));
         /** @var WorkHour $clockOut */
         $clockOut = $this->state([
             'employee_id' => $employeeId,
@@ -159,8 +159,8 @@ class WorkHourFactory extends Factory
         return $this->state([
             'date' => $date->toDateString(),
             'timestamp' => $date->copy()->setTime(
-                is_int($hour = $this->faker->numberBetween(8, 18)) ? $hour : 8,
-                is_int($minute = $this->faker->randomElement([0, 15, 30, 45])) ? $minute : 0,
+                (int) $this->faker->numberBetween(8, 18),
+                (int) $this->faker->randomElement([0, 15, 30, 45]),
                 0,
             ),
         ]);

@@ -71,14 +71,14 @@ use Modules\Xot\Contracts\ProfileContract;
  */
 class WorkHour extends BaseModel
 {
-    public const array TYPES = [
+    public const TYPES = [
         WorkHourTypeEnum::CLOCK_IN->value,
         WorkHourTypeEnum::CLOCK_OUT->value,
         WorkHourTypeEnum::BREAK_START->value,
         WorkHourTypeEnum::BREAK_END->value,
     ];
 
-    public const array STATUSES = [
+    public const STATUSES = [
         'pending',
         'approved',
         'rejected',
