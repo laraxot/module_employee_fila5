@@ -86,9 +86,8 @@ class TimeClockPage extends XotBasePage implements HasTable
                     ])
                     ->query(function (Builder $query, array $filterData): Builder {
                         /** @var string $dateFrom */
-                        $dateFrom = $filterData['date_from'] ?? '';
-                        /** @var string $dateTo */
-                        $dateTo = $filterData['date_to'] ?? '';
+                        $dateFrom = isset($filterData['date_from']) && is_string($filterData['date_from']) ? $filterData['date_from'] : '';
+                        $dateTo = isset($filterData['date_to']) && is_string($filterData['date_to']) ? $filterData['date_to'] : '';
 
                         return $query
                             ->when($dateFrom !== '', fn (Builder $q): Builder => $q->whereDate('timestamp', '>=', (string) $dateFrom))

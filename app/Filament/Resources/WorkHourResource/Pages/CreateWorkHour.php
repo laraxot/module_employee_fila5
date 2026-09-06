@@ -41,13 +41,13 @@ class CreateWorkHour extends XotBaseCreateRecord
         $employeeId = 0;
         if (is_numeric($data['employee_id'] ?? null)) {
             /** @var int $employeeId */
-            $employeeId = (int) $data['employee_id'];
+            $employeeId = (int) ($data['employee_id'] ?? 0);
         }
 
         $existingEntry = WorkHour::query()
             ->where('employee_id', $employeeId)
             ->where('timestamp', $timestamp)
-            ->where('type', $data['type'])
+            ->where('type', is_string($data['type'] ?? null) ? $data['type'] : '')
             ->first();
 
         if ($existingEntry) {
