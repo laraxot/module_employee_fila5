@@ -33,15 +33,16 @@ class CreateWorkHour extends XotBaseCreateRecord
 
     protected function beforeCreate(): void
     {
+        /** @var array{timestamp?: string|int, employee_id?: int|string, type?: string} $data */
         $data = $this->form->getState();
 
-        $timestamp = Carbon::parse((string) ($data['timestamp'] ?? ''));
+        $timestamp = Carbon::parse($data['timestamp'] ?? '');
         $employeeId = (int) ($data['employee_id'] ?? 0);
 
         $existingEntry = WorkHour::query()
             ->where('employee_id', $employeeId)
             ->where('timestamp', $timestamp)
-            ->where('type', $data['type'])
+            ->where('type', $data['type'] ?? '')
             ->first();
 
         if ($existingEntry) {
