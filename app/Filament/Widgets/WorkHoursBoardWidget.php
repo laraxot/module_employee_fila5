@@ -185,10 +185,10 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
         $contractMinutes = 0;
 
         if (is_array($summary)) {
-            $workedMinutes = intval($summary['workedMinutes'] ?? 0);
-            $addedMinutes = intval($summary['addedMinutes'] ?? 0);
-            $reducedMinutes = intval($summary['reducedMinutes'] ?? 0);
-            $contractMinutes = intval($summary['contractMinutes'] ?? 0);
+            $workedMinutes = is_numeric($summary['workedMinutes'] ?? null) ? (int) $summary['workedMinutes'] : 0;
+            $addedMinutes = is_numeric($summary['addedMinutes'] ?? null) ? (int) $summary['addedMinutes'] : 0;
+            $reducedMinutes = is_numeric($summary['reducedMinutes'] ?? null) ? (int) $summary['reducedMinutes'] : 0;
+            $contractMinutes = is_numeric($summary['contractMinutes'] ?? null) ? (int) $summary['contractMinutes'] : 0;
         }
 
         return [
