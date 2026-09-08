@@ -27,11 +27,13 @@ class WorkHourFactory extends Factory
     public function definition(): array
     {
         $timestamp = $this->faker->dateTimeBetween('-30 days', 'now');
+        /** @var int $hour */
         $hour = $this->faker->numberBetween(8, 18);
+        /** @var int $minute */
         $minute = $this->faker->randomElement([0, 15, 30, 45]);
         $carbonTimestamp = Carbon::instance($timestamp)->setTime(
-            is_int($hour) ? $hour : 0,
-            is_int($minute) ? $minute : 0,
+            $hour,
+            $minute,
             0,
         );
 
@@ -58,19 +60,19 @@ class WorkHourFactory extends Factory
     }
 
     /**
-     * Create a sequence of work hours for a full work day.
-     *
      * @return array<int, WorkHour>
      */
     public function workDaySequence(int $employeeId, Carbon $date): array
     {
         $entries = [];
 
-        $clockInHour = is_int($this->faker->numberBetween(8, 9)) ? $this->faker->numberBetween(8, 9) : 8;
-        $clockInMinute = is_int($this->faker->randomElement([0, 15, 30, 45])) ? $this->faker->randomElement([0, 15, 30, 45]) : 0;
+        /** @var int $clockInHour */
+        $clockInHour = $this->faker->numberBetween(8, 9);
+        /** @var int $clockInMin */
+        $clockInMin = $this->faker->randomElement([0, 15, 30, 45]);
         $clockInTime = $date->copy()->setTime(
             $clockInHour,
-            $clockInMinute,
+            $clockInMin,
             0,
         );
 
@@ -158,13 +160,16 @@ class WorkHourFactory extends Factory
 
     public function forDate(Carbon $date): static
     {
+        /** @var int $hour */
         $hour = $this->faker->numberBetween(8, 18);
+        /** @var int $minute */
         $minute = $this->faker->randomElement([0, 15, 30, 45]);
+
         return $this->state([
             'date' => $date->toDateString(),
             'timestamp' => $date->copy()->setTime(
-                is_int($hour) ? $hour : 8,
-                is_int($minute) ? $minute : 0,
+                $hour,
+                $minute,
                 0,
             ),
         ]);

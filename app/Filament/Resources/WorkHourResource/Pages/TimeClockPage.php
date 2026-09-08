@@ -84,14 +84,19 @@ class TimeClockPage extends XotBasePage implements HasTable
                         DatePicker::make('date_to')
                             ->label('To'),
                     ])
-                    ->query(function (Builder $query, array $filterData): Builder {
-                        /** @var string $dateFrom */
-                        $dateFrom = isset($filterData['date_from']) && is_string($filterData['date_from']) ? $filterData['date_from'] : '';
-                        $dateTo = isset($filterData['date_to']) && is_string($filterData['date_to']) ? $filterData['date_to'] : '';
+                    ->query(function (Builder $query, array $data): Builder {
+                        $dateFrom = null;
+                        if (isset($data['date_from']) && is_string($data['date_from'])) {
+                            $dateFrom = $data['date_from'];
+                        }
+                        $dateTo = null;
+                        if (isset($data['date_to']) && is_string($data['date_to'])) {
+                            $dateTo = $data['date_to'];
+                        }
 
                         return $query
-                            ->when($dateFrom !== '', fn (Builder $q): Builder => $q->whereDate('timestamp', '>=', (string) $dateFrom))
-                            ->when($dateTo !== '', fn (Builder $q): Builder => $q->whereDate('timestamp', '<=', (string) $dateTo));
+                            ->when($dateFrom, fn (Builder $query): Builder => $query->whereDate('timestamp', '>=', $dateFrom))
+                            ->when($dateTo, fn (Builder $query): Builder => $query->whereDate('timestamp', '<=', $dateTo));
                     }),
                 SelectFilter::make('type')
                     ->label('Type')

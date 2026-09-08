@@ -23,7 +23,6 @@ class CreateWorkHour extends XotBaseCreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        // Set default status if not provided
         if (! isset($data['status'])) {
             $data['status'] = WorkHourStatusEnum::PENDING->value;
         }
@@ -33,21 +32,16 @@ class CreateWorkHour extends XotBaseCreateRecord
 
     protected function beforeCreate(): void
     {
+        /** @var array{timestamp?: string|int, employee_id?: int|string, type?: string} $data */
         $data = $this->form->getState();
 
-        /** @var string $ts */
-        $ts = is_string($data['timestamp'] ?? null) ? $data['timestamp'] : '';
-        $timestamp = Carbon::parse($ts);
-        $employeeId = 0;
-        if (is_numeric($data['employee_id'] ?? null)) {
-            /** @var int $employeeId */
-            $employeeId = (int) ($data['employee_id'] ?? 0);
-        }
+        $timestamp = Carbon::parse($data['timestamp'] ?? '');
+        $employeeId = (int) ($data['employee_id'] ?? 0);
 
         $existingEntry = WorkHour::query()
             ->where('employee_id', $employeeId)
             ->where('timestamp', $timestamp)
-            ->where('type', is_string($data['type'] ?? null) ? $data['type'] : '')
+            ->where('type', $data['type'] ?? '')
             ->first();
 
         if ($existingEntry) {
