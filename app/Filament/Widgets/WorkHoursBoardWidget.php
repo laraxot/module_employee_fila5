@@ -1,0 +1,273 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Employee\Filament\Widgets;
+
+use Carbon\Carbon;
+use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Modules\Employee\Actions\BuildTimelineVisualizationAction;
+use Modules\Employee\Actions\BuildWorkHoursForRangeAction;
+use Modules\Employee\Actions\ExportTimeDataAction;
+use Modules\Employee\Actions\GetCurrentEmployeeDataAction;
+use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
+use Override;
+
+/**
+ * Weekly Time Table Widget - Replica esatta di dipendentincloud.it
+ *
+ * Implementa l'interfaccia complessa mostrata nell'immagine:
+ * - Tabella settimanale con dipendente e summary ore
+ * - Timeline visualization con fasce orarie 06:00-20:00
+ * - Blocchi colorati per sessioni di lavoro
+ * - Indicatori di stato (arancione "Problemi", verde completato, etc.)
+ * - Navigazione settimana e export functionality
+ */
+class WorkHoursBoardWidget extends XotBaseSchemaWidget
+{
+    protected string $view = 'employee::filament.widgets.work-hours-board';
+
+    protected static ?int $sort = 0;
+
+    protected static ?string $maxHeight = '800px';
+
+    public Carbon $weekStart;
+
+    public Carbon $weekEnd;
+
+    public bool $showToleranceThreshold = false;
+
+    /** @var array<string, mixed> */
+    public array $weekData = [];
+
+    /** @var array<string, mixed> */
+    public array $timelineData = [];
+
+    /** @var array<string, mixed> */
+    public array $employeeInfo = [];
+
+    /** @var array<string, mixed> */
+    public array $summaryData = [];
+
+    public function mount(): void
+    {
+        $this->weekStart = Carbon::now()->startOfWeek();
+        $this->weekEnd = Carbon::now()->endOfWeek();
+
+        $this->loadWidgetData();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    #[Override]
+    public function getFormSchema(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getViewData(): array
+    {
+        return [
+            'weekStart' => $this->weekStart,
+            'weekEnd' => $this->weekEnd,
+            'weekData' => $this->weekData,
+            'timelineData' => $this->timelineData,
+            'employeeInfo' => $this->employeeInfo,
+            'summaryData' => $this->summaryData,
+            'showToleranceThreshold' => $this->showToleranceThreshold,
+        ];
+    }
+
+    public function loadWidgetData(): void
+    {
+        $userId = (string) (Auth::id() ?? '');
+
+        $baseData = app(BuildWorkHoursForRangeAction::class)->execute($userId, $this->weekStart, $this->weekEnd);
+
+        $this->timelineData = app(BuildTimelineVisualizationAction::class)
+            ->execute($userId, $this->weekStart, $this->weekEnd);
+
+        $this->employeeInfo = app(GetCurrentEmployeeDataAction::class)->execute($userId);
+
+        $this->weekData = $this->buildWeekTableData($baseData, $this->timelineData);
+
+        $this->summaryData = $this->buildSummaryData($baseData);
+    }
+
+    /**
+     * @param  array<string, mixed>  $baseData
+     * @param  array<string, mixed>  $timelineData
+     * @return array<string, mixed>
+     */
+    private function buildWeekTableData(array $baseData, array $timelineData): array
+    {
+        $days = [];
+
+        $currentDate = $this->weekStart->copy();
+        while ($currentDate->lte($this->weekEnd)) {
+            $dateKey = $currentDate->toDateString();
+
+            $sessionBlocks = is_array($timelineData['sessionBlocks'] ?? null) ? $timelineData['sessionBlocks'] : [];
+            $dayStatuses = is_array($timelineData['dayStatus'] ?? null) ? $timelineData['dayStatus'] : [];
+
+            $dayBlocks = [];
+            if (isset($sessionBlocks[$dateKey]) && is_array($sessionBlocks[$dateKey])) {
+                $dayBlocks = $sessionBlocks[$dateKey];
+            }
+            $dayStatus = isset($dayStatuses[$dateKey]) && is_array($dayStatuses[$dateKey])
+                ? $dayStatuses[$dateKey]
+                : ['status' => 'no_work', 'indicator' => '', 'color' => 'gray'];
+
+            $totalHours = 0;
+            if (! empty($dayBlocks)) {
+                /** @var array<int, float|int> $durations */
+                $durations = array_values(array_map(
+                    static fn (mixed $duration): float => is_numeric($duration) ? (float) $duration : 0.0,
+                    array_column($dayBlocks, 'duration'),
+                ));
+                $totalHours = array_sum($durations);
+            }
+
+            $days[$dateKey] = [
+                'date' => $currentDate->format('d'),
+                'dayName' => $currentDate->translatedFormat('D'),
+                'fullDate' => $currentDate->translatedFormat('dddd D MMMM'),
+                'totalHours' => $totalHours,
+                'status' => $dayStatus['status'] ?? 'no_work',
+                'indicator' => $dayStatus['indicator'] ?? '',
+                'color' => $dayStatus['color'] ?? 'gray',
+                'isToday' => $currentDate->isToday(),
+                'isWeekend' => $currentDate->isWeekend(),
+                'sessions' => $dayBlocks,
+            ];
+
+            $currentDate = $currentDate->copy()->addDay();
+        }
+
+        return $days;
+    }
+
+    /**
+     * @param  array<string, mixed>  $baseData
+     * @return array<string, mixed>
+     */
+    private function buildSummaryData(array $baseData): array
+    {
+        $summary = $baseData['summary'] ?? [];
+
+        $workedMinutes = 0;
+        $addedMinutes = 0;
+        $reducedMinutes = 0;
+        $contractMinutes = 0;
+
+        if (is_array($summary)) {
+            /** @var int $workedVal */
+            $workedVal = $summary['workedMinutes'] ?? 0;
+            $workedMinutes = $workedVal;
+
+            /** @var int $addedVal */
+            $addedVal = $summary['addedMinutes'] ?? 0;
+            $addedMinutes = $addedVal;
+
+            /** @var int $reducedVal */
+            $reducedVal = $summary['reducedMinutes'] ?? 0;
+            $reducedMinutes = $reducedVal;
+
+            /** @var int $contractVal */
+            $contractVal = $summary['contractMinutes'] ?? 0;
+            $contractMinutes = $contractVal;
+        }
+
+        return [
+            'workedHours' => $this->formatMinutesToHours($workedMinutes),
+            'addedHours' => $this->formatMinutesToHours($addedMinutes),
+            'reducedHours' => $this->formatMinutesToHours($reducedMinutes),
+            'contractHours' => $this->formatMinutesToHours($contractMinutes),
+            'hasAdded' => $addedMinutes > 0,
+            'hasReduced' => $reducedMinutes > 0,
+        ];
+    }
+
+    public function previousWeek(): void
+    {
+        $this->weekStart = $this->weekStart->copy()->subWeek();
+        $this->weekEnd = $this->weekEnd->copy()->subWeek();
+        $this->loadWidgetData();
+    }
+
+    public function nextWeek(): void
+    {
+        $this->weekStart = $this->weekStart->copy()->addWeek();
+        $this->weekEnd = $this->weekEnd->copy()->addWeek();
+        $this->loadWidgetData();
+    }
+
+    public function currentWeek(): void
+    {
+        $this->weekStart = Carbon::now()->startOfWeek();
+        $this->weekEnd = Carbon::now()->endOfWeek();
+        $this->loadWidgetData();
+    }
+
+    public function toggleToleranceThreshold(): void
+    {
+        $this->showToleranceThreshold = ! $this->showToleranceThreshold;
+        $this->loadWidgetData();
+    }
+
+    public function exportData(): void
+    {
+        $userId = (string) (Auth::id() ?? '');
+
+        app(ExportTimeDataAction::class)
+            ->onQueue('exports')
+            ->execute($userId, $this->weekStart, $this->weekEnd, 'xlsx');
+
+        Notification::make()
+            ->title('Export avviato')
+            ->body('Riceverai una notifica quando completato.')
+            ->success()
+            ->send();
+    }
+
+    public function formatMinutesToHours(int $minutes): string
+    {
+        if ($minutes === 0) {
+            return 'Nessuna';
+        }
+
+        $hours = intdiv($minutes, 60);
+        $mins = $minutes % 60;
+
+        if ($mins === 0) {
+            return "{$hours}h";
+        }
+
+        return "{$hours}h {$mins}m";
+    }
+
+    public function getTimePosition(string $time): float
+    {
+        [$hours, $minutes] = explode(':', $time);
+        $totalMinutes = (((int) $hours) * 60) + ((int) $minutes);
+        $baseMinutes = 6 * 60;
+        $maxMinutes = 20 * 60;
+
+        return (($totalMinutes - $baseMinutes) / ($maxMinutes - $baseMinutes)) * 100;
+    }
+
+    public function getSessionColorClass(string $color): string
+    {
+        return match ($color) {
+            'green' => 'timeline-session-green',
+            'orange' => 'timeline-session-orange',
+            'red' => 'timeline-session-red',
+            default => 'bg-gray-200 dark:bg-gray-600 border-gray-400',
+        };
+    }
+}
