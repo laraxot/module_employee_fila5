@@ -104,7 +104,7 @@ class TimeClock extends Component
             $this->updateTimeAndStatus();
             $this->loadTodayData();
             $this->dispatch('workHourRecorded');
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             $this->showNotification('Error', 'Failed to record time entry: '.$e->getMessage(), 'danger');
         }
     }

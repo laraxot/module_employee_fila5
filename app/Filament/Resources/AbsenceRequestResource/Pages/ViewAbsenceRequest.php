@@ -14,11 +14,8 @@ class ViewAbsenceRequest extends XotBaseViewRecord
     /**
      * @return array<string, \Filament\Schemas\Components\Component>
      */
-<<<<<<< HEAD
     #[\Override]
     protected function getInfolistSchema(): array
-=======
->>>>>>> laraxot/dev
     {
         return [];
     }

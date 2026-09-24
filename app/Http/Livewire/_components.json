@@ -1,1 +1,1 @@
-[]
+[{"name":"time-clock","class":"TimeClock","module":null,"path":null,"ns":"Modules\\Employee\\Http\\Livewire\\TimeClock"},{"name":"work-hour-dashboard","class":"WorkHourDashboard","module":null,"path":null,"ns":"Modules\\Employee\\Http\\Livewire\\WorkHourDashboard"}]
