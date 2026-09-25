@@ -10,7 +10,6 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Text;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Modules\Employee\Models\AbsenceRequest;
 use Modules\Employee\Models\Employee;
@@ -126,7 +125,7 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
             ->whereBetween('starts_at', [$from, $to])
             ->get()
             ->groupBy('type')
-            ->map(fn (Collection $requests): int => (int) $requests->sum(
+            ->map(fn ($requests) => (int) $requests->sum(
                 fn (AbsenceRequest $request): int => (int) $request->ends_at->diffInMinutes($request->starts_at)
             ));
 
