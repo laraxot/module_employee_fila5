@@ -1,3 +1,9 @@
+---
+title: "Employee - PHPSTAN-COMPLIANCE"
+module: Employee
+bmad: true
+status: active
+---
 # PHPStan Compliance - Employee Module
 
 ## Status: ✅ FULLY COMPLIANT

@@ -1,3 +1,9 @@
+---
+title: "Employee - 2026-09-06-GIT-CONFLICT-RESOLUTION"
+module: Employee
+bmad: true
+status: active
+---
 # BMAD Story — Git Conflict Resolution Employee Module
 
 ## Understand

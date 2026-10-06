@@ -1,3 +1,9 @@
+---
+title: "Employee - WORKHOUR_IMPLEMENTATION"
+module: Employee
+bmad: true
+status: active
+---
 # WorkHour Module - Complete Implementation
 
 ## Overview

@@ -1,3 +1,9 @@
+---
+title: "Employee - INDEX"
+module: Employee
+bmad: true
+status: active
+---
 # Indice documentazione — Modulo Employee
 
 Indice per argomento di `Modules/Employee/docs/` (293 file `.md`). Nessun file esistente è stato spostato, rinominato o cancellato: questo indice si limita a collegare e a segnalare i doppioni noti.

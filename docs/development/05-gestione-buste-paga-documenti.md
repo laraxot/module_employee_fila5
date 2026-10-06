@@ -1,3 +1,9 @@
+---
+title: "Employee - 05-GESTIONE-BUSTE-PAGA-DOCUMENTI"
+module: Employee
+bmad: true
+status: active
+---
 # 05 - Gestione Buste Paga e Documenti
 
 ## Panoramica

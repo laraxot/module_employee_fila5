@@ -1,3 +1,9 @@
+---
+title: "Employee - TIME_ENTRY_REFACTORING_SUMMARY"
+module: Employee
+bmad: true
+status: active
+---
 # Session Summary - 2025-12-12
 ## TimeEntry Refactoring & PHPStan Error Analysis
 

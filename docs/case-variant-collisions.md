@@ -1,3 +1,9 @@
+---
+title: "Employee - CASE-VARIANT-COLLISIONS"
+module: Employee
+bmad: true
+status: active
+---
 # Collisioni di nome per sola differenza di maiuscole
 
 **Misurato**: 2026-08-31

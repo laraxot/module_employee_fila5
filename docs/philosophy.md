@@ -1,3 +1,9 @@
+---
+title: "Employee - PHILOSOPHY"
+module: Employee
+bmad: true
+status: active
+---
 # Employee Module: HR Management
 
 > **Workforce Management** — Employees, departments, absence requests, work schedules, timeline.

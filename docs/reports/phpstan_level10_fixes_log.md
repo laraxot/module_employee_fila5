@@ -1,3 +1,9 @@
+---
+title: "Employee - PHPSTAN_LEVEL10_FIXES_LOG"
+module: Employee
+bmad: true
+status: active
+---
 # PHPStan Level 10 Fixes Completed - Employee Module
 
 ## Riepilogo Correzioni Applicate

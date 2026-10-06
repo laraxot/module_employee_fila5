@@ -1,3 +1,9 @@
+---
+title: "Employee - PHPSTAN-ELOQUENT-RELATIONS-FIX"
+module: Employee
+bmad: true
+status: active
+---
 # PHPStan Eloquent Relations Fix - Employee Module
 
 ## Overview

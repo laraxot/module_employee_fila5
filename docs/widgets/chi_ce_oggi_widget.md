@@ -1,3 +1,9 @@
+---
+title: "Employee - CHI_CE_OGGI_WIDGET"
+module: Employee
+bmad: true
+status: active
+---
 # CHI C'È OGGI Widget - Documentazione
 
 ## 👥 Panoramica

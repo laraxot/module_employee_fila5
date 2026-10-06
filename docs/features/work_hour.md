@@ -1,3 +1,9 @@
+---
+title: "Employee - WORK_HOUR"
+module: Employee
+bmad: true
+status: active
+---
 # WorkHour Module - Complete Implementation Guide
 
 ## Overview
