@@ -50,8 +50,6 @@ class EditWorkHour extends XotBaseEditRecord
         if (! is_numeric($employeeIdValue)) {
             throw new InvalidArgumentException('Invalid employee ID');
         }
-        $employeeId = (int) $employeeIdValue;
-
         $newTimestamp = Carbon::parse(
             is_string($timestampValue) ? $timestampValue : $timestampValue->format('Y-m-d H:i:s'),
         );

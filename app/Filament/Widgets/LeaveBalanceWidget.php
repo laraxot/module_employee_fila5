@@ -121,7 +121,7 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
     {
         $usedMinutesByType = AbsenceRequest::query()
             ->where('user_id', $employee->getKey())
-            ->where('status', AbsenceRequest::STATUS_APPROVED)
+            ->where('status', \Modules\Employee\Enums\AbsenceRequestStatusEnum::APPROVED->value)
             ->whereBetween('starts_at', [$from, $to])
             ->get()
             ->groupBy('type')
@@ -130,10 +130,10 @@ class LeaveBalanceWidget extends XotBaseSchemaWidget
             ));
 
         $definitions = [
-            'ferie' => ['type' => AbsenceRequest::TYPE_VACATION, 'label_key' => 'vacation', 'icon' => 'heroicon-o-sun'],
-            'permessi' => ['type' => AbsenceRequest::TYPE_LEAVE, 'label_key' => 'permits', 'icon' => 'heroicon-o-document-text'],
-            'malattia' => ['type' => AbsenceRequest::TYPE_SICK, 'label_key' => 'former_holidays', 'icon' => 'heroicon-o-heart'],
-            'infortunio' => ['type' => AbsenceRequest::TYPE_INJURY, 'label_key' => 'hour_bank', 'icon' => 'heroicon-o-banknotes'],
+            'ferie' => ['type' => \Modules\Employee\Enums\AbsenceRequestTypeEnum::VACATION->value, 'label_key' => 'vacation', 'icon' => 'heroicon-o-sun'],
+            'permessi' => ['type' => \Modules\Employee\Enums\AbsenceRequestTypeEnum::LEAVE->value, 'label_key' => 'permits', 'icon' => 'heroicon-o-document-text'],
+            'malattia' => ['type' => \Modules\Employee\Enums\AbsenceRequestTypeEnum::SICK->value, 'label_key' => 'former_holidays', 'icon' => 'heroicon-o-heart'],
+            'infortunio' => ['type' => \Modules\Employee\Enums\AbsenceRequestTypeEnum::INJURY->value, 'label_key' => 'hour_bank', 'icon' => 'heroicon-o-banknotes'],
         ];
 
         $balances = [];

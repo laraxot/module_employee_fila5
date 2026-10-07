@@ -28,7 +28,7 @@ class AbsenceRequestsTable extends XotBaseResourceTable
             ->icon('heroicon-o-check-circle')
             ->color('success')
             ->requiresConfirmation()
-            ->visible(static fn (AbsenceRequest $record): bool => $record->status === AbsenceRequest::STATUS_PENDING)
+            ->visible(static fn (AbsenceRequest $record): bool => $record->status === \Modules\Employee\Enums\AbsenceRequestStatusEnum::PENDING->value)
             ->action(function (AbsenceRequest $record): void {
                 app(ApproveAbsenceRequestAction::class)->execute($record, (int) Auth::id());
             });
@@ -38,7 +38,7 @@ class AbsenceRequestsTable extends XotBaseResourceTable
             ->icon('heroicon-o-x-circle')
             ->color('danger')
             ->requiresConfirmation()
-            ->visible(static fn (AbsenceRequest $record): bool => $record->status === AbsenceRequest::STATUS_PENDING)
+            ->visible(static fn (AbsenceRequest $record): bool => $record->status === \Modules\Employee\Enums\AbsenceRequestStatusEnum::PENDING->value)
             ->action(function (AbsenceRequest $record): void {
                 app(RejectAbsenceRequestAction::class)->execute($record, (int) Auth::id());
             });
@@ -73,9 +73,9 @@ class AbsenceRequestsTable extends XotBaseResourceTable
                 ->label(__('employee::absence_request.fields.status'))
                 ->badge()
                 ->colors([
-                    'warning' => AbsenceRequest::STATUS_PENDING,
-                    'success' => AbsenceRequest::STATUS_APPROVED,
-                    'danger' => AbsenceRequest::STATUS_REJECTED,
+                    'warning' => \Modules\Employee\Enums\AbsenceRequestStatusEnum::PENDING->value,
+                    'success' => \Modules\Employee\Enums\AbsenceRequestStatusEnum::APPROVED->value,
+                    'danger' => \Modules\Employee\Enums\AbsenceRequestStatusEnum::REJECTED->value,
                 ])
                 ->formatStateUsing(fn (string $state): string => __("employee::absence_request.statuses.{$state}"))
                 ->sortable(),

@@ -94,17 +94,16 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
 
         $this->employeeInfo = app(GetCurrentEmployeeDataAction::class)->execute($userId);
 
-        $this->weekData = $this->buildWeekTableData($baseData, $this->timelineData);
+        $this->weekData = $this->buildWeekTableData($this->timelineData);
 
         $this->summaryData = $this->buildSummaryData($baseData);
     }
 
     /**
-     * @param  array<string, mixed>  $baseData
      * @param  array<string, mixed>  $timelineData
      * @return array<string, mixed>
      */
-    private function buildWeekTableData(array $baseData, array $timelineData): array
+    private function buildWeekTableData(array $timelineData): array
     {
         $days = [];
 

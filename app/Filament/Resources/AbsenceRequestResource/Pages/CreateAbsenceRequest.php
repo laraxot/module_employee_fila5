@@ -26,7 +26,7 @@ class CreateAbsenceRequest extends XotBaseCreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         if (! isset($data['status'])) {
-            $data['status'] = AbsenceRequest::STATUS_PENDING;
+            $data['status'] = \Modules\Employee\Enums\AbsenceRequestStatusEnum::PENDING->value;
         }
 
         if (! isset($data['user_id'])) {

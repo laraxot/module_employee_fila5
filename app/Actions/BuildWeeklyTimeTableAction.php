@@ -42,7 +42,6 @@ class BuildWeeklyTimeTableAction
             'totalWorked' => 0.0,
             'totalContract' => 0.0,
             'totalVariance' => 0.0,
-            'averageDaily' => 0.0,
         ];
 
         // Costruisci dati per ogni giorno della settimana
