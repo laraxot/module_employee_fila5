@@ -160,6 +160,8 @@ Cluster con tre alberi paralleli su contenuti correlati ma **non identici** (div
 ## Story BMAD
 
 - [stories/7.1.phpstan-paramtype-coverage.story.md](stories/7.1.phpstan-paramtype-coverage.story.md)
+- [stories/7.1.phpstan-paramtype-coverage.dev.md](stories/7.1.phpstan-paramtype-coverage.dev.md)
+- [stories/git-conflict-resolution.md](stories/git-conflict-resolution.md)
 - [stories/docs-index-audit.story.md](stories/docs-index-audit.story.md) — story di questo audit
 
 ## Wiki interno (second brain di modulo)

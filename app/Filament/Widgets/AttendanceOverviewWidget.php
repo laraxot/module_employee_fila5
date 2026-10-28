@@ -49,7 +49,7 @@ class AttendanceOverviewWidget extends XotBaseSchemaWidget
                         ->options($this->getDepartmentOptions())
                         ->default($this->selectedDepartment)
                         ->live()
-                        ->afterStateUpdated(function ($state): void {
+                        ->afterStateUpdated(function (mixed $state): void {
                             if (is_string($state) || $state === null) {
                                 $this->selectedDepartment = $state;
                             }
