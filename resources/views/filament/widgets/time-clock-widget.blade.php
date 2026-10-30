@@ -36,7 +36,7 @@ declare(strict_types=1);
                         size="xl"
                         icon="heroicon-o-arrow-left-on-rectangle"
                         style="width:100%;min-height:3.5rem;font-size:1.125rem;">
-                        {{ __('employee::widgets.time_clock.clock_out') }}
+                        {{ __('employee::time_clock_widget.actions.clock_out.label') }}
                     </x-filament::button>
                 @else
                     <x-filament::button
@@ -45,7 +45,7 @@ declare(strict_types=1);
                         size="xl"
                         icon="heroicon-o-arrow-right-on-rectangle"
                         style="width:100%;min-height:3.5rem;font-size:1.125rem;">
-                        {{ __('employee::widgets.time_clock.clock_in') }}
+                        {{ __('employee::time_clock_widget.actions.clock_in.label') }}
                     </x-filament::button>
                 @endif
             </div>
@@ -53,7 +53,7 @@ declare(strict_types=1);
             <div aria-live="polite">
                 <div style="margin-bottom:0.5rem;">
                     <x-filament::badge :color="$isClockedIn ? 'success' : 'gray'">
-                        {{ $isClockedIn ? __('employee::widgets.time_clock.session_active') : __('employee::widgets.time_clock.session_inactive') }}
+                        {{ $isClockedIn ? __('employee::time_clock_widget.messages.session_active.message') : __('employee::time_clock_widget.messages.session_inactive.message') }}
                     </x-filament::badge>
                 </div>
 
@@ -67,7 +67,7 @@ declare(strict_types=1);
                         </x-filament::badge>
                     @empty
                         <x-filament::badge color="gray" size="sm" icon="heroicon-o-clock">
-                            {{ __('employee::widgets.time_clock.no_entries') }}
+                            {{ __('employee::time_clock_widget.messages.no_entries.message') }}
                         </x-filament::badge>
                     @endforelse
                 </div>
