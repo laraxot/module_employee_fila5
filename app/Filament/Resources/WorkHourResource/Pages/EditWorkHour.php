@@ -26,8 +26,7 @@ class EditWorkHour extends XotBaseEditRecord
 
     protected function getRedirectUrl(): string
     {
-        /** @var string */
-        return $this->getResource()::getUrl('index');
+        return $this->getRecordReturnUrl($this->getResourceUrl('index'));
     }
 
     protected function beforeSave(): void

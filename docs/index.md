@@ -163,7 +163,10 @@ Cluster con tre alberi paralleli su contenuti correlati ma **non identici** (div
 - [stories/7.1.phpstan-paramtype-coverage.dev.md](stories/7.1.phpstan-paramtype-coverage.dev.md)
 - [stories/git-conflict-resolution.md](stories/git-conflict-resolution.md)
 - [stories/docs-index-audit.story.md](stories/docs-index-audit.story.md) — story di questo audit
+- [stories/mobile-ux-pass.story.md](stories/mobile-ux-pass.story.md) — UX da telefono: widget di timbratura, ore, richieste di assenza (fatti verificati: il pannello non ha tema Tailwind)
+- [stories/absence-request-authorization.story.md](stories/absence-request-authorization.story.md) — chi chiede e chi decide le assenze: in Filament il silenzio di una policy consente, policy esplicita + form + pagine (aperto: chi e' il responsabile, `WorkHourPolicy`)
 - Altre story: [8.1.attendance-overview-widget-syntax-fix.story.md](stories/8.1.attendance-overview-widget-syntax-fix.story.md) · [fix-phpstan-timeclock-argument.story.md](stories/fix-phpstan-timeclock-argument.story.md) · [phpstan-batch.story.md](stories/phpstan-batch.story.md) · [phpstan-Employee-fix.md](stories/phpstan-Employee-fix.md)
+- [stories/blade-i18n-no-hardcoded-text.story.md](stories/blade-i18n-no-hardcoded-text.story.md) — niente testi fissi nelle Blade: chiavi `employee::` in it, en, de, es, numeri e residui
 - [bmad/README.md](bmad/README.md), [bmad/domain-enums-over-model-constants.md](bmad/domain-enums-over-model-constants.md) — regola: enum di dominio al posto delle costanti nel modello
 - Non indicizzati altrove: [PHILOSOPHY.md](PHILOSOPHY.md) (contenuto diverso da `philosophy.md`, collisione di sola maiuscola: vedi case-variant-collisions.md; cita "FixCity", da riconciliare) · [coverage.md](coverage.md) · [phpstan-quality-gate.md](phpstan-quality-gate.md) · [wiki/AGENTS.md](wiki/AGENTS.md) · [wiki/readme.md](wiki/readme.md)
 

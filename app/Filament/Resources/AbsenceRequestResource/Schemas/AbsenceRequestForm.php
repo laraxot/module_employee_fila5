@@ -9,6 +9,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
+use Illuminate\Support\Facades\Auth;
+use Modules\Employee\Filament\Resources\AbsenceRequestResource;
 use Modules\Employee\Models\AbsenceRequest;
 use Modules\Xot\Filament\Resources\Schemas\XotBaseResourceForm;
 
@@ -25,8 +27,12 @@ class AbsenceRequestForm extends XotBaseResourceForm
                     'user_id' => Select::make('user_id')
                         ->label(__('employee::absence_request.fields.user'))
                         ->relationship('user', 'name')
+                        // Chiedere un permesso da telefono: il dipendente e' gia' chi e' collegato, un campo in meno da compilare.
+                        ->default(static fn (): int|string|null => Auth::id())
                         ->searchable()
-                        ->required(),
+                        ->required()
+                        // Il dipendente non sceglie per chi chiede: lo imposta il server (CreateAbsenceRequest).
+                        ->visible(static fn (): bool => AbsenceRequestResource::canManageAll()),
 
                     'type' => Select::make('type')
                         ->label(__('employee::absence_request.fields.type'))
@@ -46,7 +52,9 @@ class AbsenceRequestForm extends XotBaseResourceForm
                             \Modules\Employee\Enums\AbsenceRequestStatusEnum::REJECTED->value => __('employee::absence_request.statuses.rejected'),
                         ])
                         ->default(\Modules\Employee\Enums\AbsenceRequestStatusEnum::PENDING->value)
-                        ->required(),
+                        ->required()
+                        // Lo stato lo decide chi gestisce le richieste (azioni Approva/Rifiuta): una nuova richiesta nasce sempre in attesa.
+                        ->visible(static fn (): bool => AbsenceRequestResource::canManageAll()),
 
                     'starts_at' => DateTimePicker::make('starts_at')
                         ->label(__('employee::absence_request.fields.starts_at'))
