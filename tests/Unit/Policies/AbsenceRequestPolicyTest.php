@@ -74,7 +74,7 @@ test('an employee edits or withdraws only their own pending absence request', fu
 test('an employee cannot decide, restore, force delete, replicate or reorder', function (string $ability): void {
     $employee = absencePolicyUser('u1', false);
 
-    $request = in_array($ability, ['approve', 'reject'], true)
+    $request = in_array($ability, ['approve', 'reject', 'replicate'], true)
         ? absencePolicyRequest('u1', AbsenceRequestStatusEnum::PENDING)
         : null;
 

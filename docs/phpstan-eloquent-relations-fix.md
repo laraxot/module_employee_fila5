@@ -1,9 +1,3 @@
----
-title: "Employee - PHPSTAN-ELOQUENT-RELATIONS-FIX"
-module: Employee
-bmad: true
-status: active
----
 # PHPStan Eloquent Relations Fix - Employee Module
 
 ## Overview
@@ -12,8 +6,8 @@ Questo documento descrive la risoluzione degli errori PHPStan relativi ai tipi g
 
 ## Errore Identificato
 
-**Tipo:** Template Type Covariance Error
-**Messaggio:** `Template type TDeclaringModel on class BelongsTo is not covariant`
+**Tipo:** Template Type Covariance Error  
+**Messaggio:** `Template type TDeclaringModel on class BelongsTo is not covariant`  
 **File Coinvolti:**
 - `Employee/app/Models/Attendance.php` (linee 78, 88, 98)
 - `Employee/app/Models/Timbratura.php` (linee 78, 88, 98)
@@ -152,7 +146,7 @@ public function updatedBy(): BelongsTo
 Dopo l'implementazione, verificare con:
 
 ```bash
-cd /var/www/html/_bases/base_workorder_fila3_mono/laravel
+cd /var/www/html/_bases/base_techplanner_fila3_mono/laravel
 ./vendor/bin/phpstan analyze Modules/Employee --level=9
 ```
 
