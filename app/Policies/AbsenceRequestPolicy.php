@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Employee\Policies;
 
+use Illuminate\Database\Eloquent\Model;
 use Modules\Employee\Enums\AbsenceRequestStatusEnum;
 use Modules\Employee\Models\AbsenceRequest;
 use Modules\User\Models\Policies\UserBasePolicy;
@@ -86,7 +87,7 @@ class AbsenceRequestPolicy extends UserBasePolicy
         return false;
     }
 
-    public function replicate(UserContract $_user): bool
+    public function replicate(UserContract $_user, Model $_record): bool
     {
         return false;
     }
