@@ -202,3 +202,18 @@ vendor/bin/phpstan analyse --memory-limit=2G
 3. **Documentare** sempre le eccezioni con docblock
 4. **Verificare** regolarmente con PHPStan
 5. **Aggiornare** la configurazione quando necessario 
+## Wave Comment+Employee (2026-11-17)
+
+**Baseline**: Employee 52 → **0** (verify: `phpstan analyse Modules/Comment Modules/Employee`).
+
+### Purpose
+Employee is Parental STI on `users`, not a separate `employees` table. HR payload lives in JSON (`personal_data`, `contact_data`); org graph uses `department_id` / `position_id` / `manager_id`.
+
+### Changes
+- Model: `department()`, `position()`, `leaves()`, `isActive()`, `hasManager()`, `hasSubordinates()`, `scopeActive`/`scopeInactive`, accessors for `full_name`/`email`/`phone` from JSON, IT+EN status labels.
+- Test: aligned to STI + real API; `documents` is array cast (not relation); no fake `user()` BelongsTo.
+- Restored `module.json` / `composer.json` so nwidart can discover the module and register `employee::` views.
+
+### Related
+- [business-logic-employee-management.md](./business-logic-employee-management.md)
+- [phpstan-quality-gate.md](./phpstan-quality-gate.md)

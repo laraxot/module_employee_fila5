@@ -190,7 +190,7 @@ $currentCarbon->copy()->locale('it')->format('D d');
 3. `phpstan-corrections-summary-final.md` - Questo documento
 
 ### Collegamenti Mantenuti
-- [Employee Module Architecture](./ARCHITECTURE.md)
+- [Employee Module Architecture](architecture.md)
 - [Time Tracking Business Logic](./business-logic-time-tracking.md)
 - [PHPStan Compliance Plan](./phpstan_level10_compliance_plan.md)
 - [Root Documentation](../../../docs/PHPSTAN_LEVEL10_FIXES.md)

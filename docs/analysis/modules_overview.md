@@ -8,7 +8,7 @@ status: active
 
 ## Moduli Identificati nel Progetto
 
-Il progetto base_workorder_fila3_mono contiene i seguenti 14 moduli Laraxot:
+Il progetto base_workorder_fila5 contiene i seguenti 14 moduli Laraxot:
 
 ### 1. **Activity** (303 items)
 - **Scopo**: Gestione delle attività e tracking delle azioni utente

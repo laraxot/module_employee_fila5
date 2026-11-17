@@ -1,5 +1,5 @@
 {
-    "name": "laraxot/module_employee_fila3",
+    "name": "laraxot/module_employee_fila5",
     "description": "employee module for employee management",
     "keywords": [
         "laraxot",
@@ -7,7 +7,7 @@
         "filament",
         "module_employee"
     ],
-    "homepage": "https://github.com/laraxot/module_employee_fila3",
+    "homepage": "https://github.com/laraxot/module_employee_fila5",
     "license": "MIT",
     "authors": [
         {

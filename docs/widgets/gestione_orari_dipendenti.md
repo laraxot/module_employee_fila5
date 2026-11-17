@@ -634,8 +634,8 @@ class WorkHoursPage extends XotBasePage
 
 ## Collegamenti di Riferimento
 
-- [TimeClockWidget Implementation](/var/www/html/_bases/base_workorder_fila3_mono/laravel/Modules/Employee/app/Filament/Widgets/TimeClockWidget.php)
-- [WorkHoursBoardWidget](/var/www/html/_bases/base_workorder_fila3_mono/laravel/Modules/Employee/app/Filament/Widgets/WorkHoursBoardWidget.php)
-- [Employee Module Architecture](/var/www/html/_bases/base_workorder_fila3_mono/laravel/Modules/Employee/docs/architecture/)
+- [TimeClockWidget Implementation](/var/www/html/_bases/base_workorder_fila5/laravel/Modules/Employee/app/Filament/Widgets/TimeClockWidget.php)
+- [WorkHoursBoardWidget](/var/www/html/_bases/base_workorder_fila5/laravel/Modules/Employee/app/Filament/Widgets/WorkHoursBoardWidget.php)
+- [Employee Module Architecture](/var/www/html/_bases/base_workorder_fila5/laravel/Modules/Employee/docs/architecture/)
 - [Filament Widgets Documentation](https://filamentphp.com/docs/3.x/widgets)
-- [Laraxot Widget Patterns](/var/www/html/_bases/base_workorder_fila3_mono/laravel/Modules/Employee/docs/development/filament3_widget_patterns.md)
+- [Laraxot Widget Patterns](/var/www/html/_bases/base_workorder_fila5/laravel/Modules/Employee/docs/development/filament3_widget_patterns.md)

@@ -240,4 +240,4 @@ If you encounter issues:
 
 ---
 
-**Next**: Read the [Architecture Overview](../ARCHITECTURE.md) to understand the system design, or explore [Feature Documentation](../02-features/README.md) for detailed functionality guides.
+**Next**: Read the [Architecture Overview](../architecture.md) to understand the system design, or explore [Feature Documentation](../02-features/README.md) for detailed functionality guides.

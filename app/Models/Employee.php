@@ -51,12 +51,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property array<string, mixed> $salary_data
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \Modules\User\Models\User|null $user
  * @property-read Collection<int, WorkHour> $workHours
+ * @property-read Collection<int, AbsenceRequest> $leaves
  * @property string|null $name
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string $email
+ * @property-read string|null $phone
  * @property string|null $email_verified_at
  * @property string|null $password
  * @property string|null $remember_token
@@ -114,10 +115,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection<int, Treatment> $treatments
  * @property-read int|null $treatments_count
  * @property-read int|null $work_hours_count
+ * @property-read int|null $leaves_count
  *
  * @method static EmployeeFactory factory($count = null, $state = [])
  * @method static Builder<static>|Employee newModelQuery()
  * @method static Builder<static>|Employee newQuery()
+ * @method static Builder<static>|Employee active()
+ * @method static Builder<static>|Employee inactive()
  * @method static Builder<static>|Employee orWhereNotState(string $column, $states)
  * @method static Builder<static>|Employee orWhereState(string $column, $states)
  * @method static Builder<static>|Employee permission($permissions, $without = false)
@@ -150,6 +154,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static Builder<static>|Employee withoutRole($roles, $guard = null)
  *
  * @property-read Employee|null $manager
+ * @property-read Department|null $department
+ * @property-read Position|null $position
  * @property-read Collection<int, Employee> $subordinates
  *
  * @mixin \Eloquent
@@ -210,6 +216,36 @@ class Employee extends User
     }
 
     /**
+     * Absence requests (leaves) owned by this employee (STI user id).
+     *
+     * @return HasMany<AbsenceRequest, $this>
+     */
+    public function leaves(): HasMany
+    {
+        return $this->hasMany(AbsenceRequest::class, 'user_id');
+    }
+
+    /**
+     * Organizational department.
+     *
+     * @return BelongsTo<Department, $this>
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    /**
+     * Job position.
+     *
+     * @return BelongsTo<Position, $this>
+     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class, 'position_id');
+    }
+
+    /**
      * Get the manager of this employee.
      *
      * @return BelongsTo<Employee, $this>
@@ -230,11 +266,112 @@ class Employee extends User
     }
 
     /**
-     * Check if employee is active today.
+     * HR status: active employee (EN docs + IT factory legacy).
+     */
+    public function isActive(): bool
+    {
+        $status = is_string($this->status) ? strtolower($this->status) : '';
+
+        return in_array($status, ['active', 'attivo'], true);
+    }
+
+    /**
+     * Whether a manager is assigned.
+     */
+    public function hasManager(): bool
+    {
+        return $this->manager_id !== null;
+    }
+
+    /**
+     * Whether this employee manages others.
+     */
+    public function hasSubordinates(): bool
+    {
+        return $this->subordinates()->exists();
+    }
+
+    /**
+     * @param  Builder<static>  $query
+     * @return Builder<static>
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->whereIn('status', ['active', 'attivo']);
+    }
+
+    /**
+     * @param  Builder<static>  $query
+     * @return Builder<static>
+     */
+    public function scopeInactive(Builder $query): Builder
+    {
+        return $query->whereIn('status', ['inactive', 'inattivo']);
+    }
+
+    /**
+     * Check if employee is active today (has clock events).
      */
     public function isActiveToday(): bool
     {
         return $this->workHours()->whereDate('timestamp', today())->exists();
+    }
+
+    /**
+     * Prefer personal_data when STI columns are empty (HR JSON payload).
+     */
+    #[Override]
+    public function getFullNameAttribute(?string $value = null): string
+    {
+        if (is_string($value) && trim($value) !== '') {
+            return $value;
+        }
+
+        $personal = $this->personal_data;
+        if (is_array($personal)) {
+            $first = is_string($personal['first_name'] ?? null) ? $personal['first_name'] : '';
+            $last = is_string($personal['last_name'] ?? null) ? $personal['last_name'] : '';
+            $composed = trim($first.' '.$last);
+            if ($composed !== '') {
+                return $composed;
+            }
+        }
+
+        return parent::getFullNameAttribute($value);
+    }
+
+    /**
+     * Prefer contact_data.email when the users.email column is empty.
+     */
+    public function getEmailAttribute(mixed $value): string
+    {
+        if (is_string($value) && $value !== '') {
+            return $value;
+        }
+
+        $contact = $this->contact_data;
+        if (is_array($contact) && is_string($contact['email'] ?? null) && $contact['email'] !== '') {
+            return $contact['email'];
+        }
+
+        return is_string($value) ? $value : '';
+    }
+
+    /**
+     * Phone lives in contact_data (no dedicated column on users).
+     */
+    public function getPhoneAttribute(mixed $value = null): ?string
+    {
+        if (is_string($value) && $value !== '') {
+            return $value;
+        }
+
+        $contact = $this->contact_data;
+        if (is_array($contact) && is_string($contact['phone'] ?? null)) {
+            return $contact['phone'];
+        }
+
+        return null;
     }
 
     /**
@@ -243,13 +380,13 @@ class Employee extends User
     public function getStatusLabelAttribute(): string
     {
         $status = $this->status;
-        $statusStr = is_string($status) ? $status : '';
+        $statusStr = is_string($status) ? strtolower($status) : '';
 
         return match ($statusStr) {
-            'active' => 'Attivo',
-            'inactive' => 'Inattivo',
-            'on_leave' => 'In Ferie',
-            'terminated' => 'Cessato',
+            'active', 'attivo' => 'Attivo',
+            'inactive', 'inattivo' => 'Inattivo',
+            'on_leave', 'sospeso' => 'In Ferie',
+            'terminated', 'licenziato' => 'Cessato',
             default => 'Sconosciuto',
         };
     }
