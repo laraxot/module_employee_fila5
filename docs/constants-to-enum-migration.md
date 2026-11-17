@@ -116,7 +116,7 @@ use Modules\Employee\Enums\WorkHourStatusEnum;
 
 ### PHPStan Livello 10
 ```bash
-cd /var/www/html/_bases/base_workorder_fila3_mono/laravel
+cd /var/www/html/_bases/base_workorder_fila5/laravel
 ./vendor/bin/phpstan analyze Modules/Employee/app/Models/WorkHour.php --level=10
 ./vendor/bin/phpstan analyze Modules/Employee/app/Enums/ --level=10
 ```

@@ -1,3 +1,5 @@
 # Changelog
 
-Tutte le variazioni importanti di Employee saranno generate automaticamente da semantic-release.
+Formato: [Keep a Changelog](https://keepachangelog.com/it/1.1.0/)
+
+## [Unreleased]

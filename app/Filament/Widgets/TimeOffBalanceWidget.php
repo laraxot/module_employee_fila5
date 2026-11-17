@@ -107,11 +107,6 @@ class TimeOffBalanceWidget extends XotBaseSchemaWidget
     protected function formatHoursMinutes(float $hours): string
     {
         if (abs($hours) < 0.01) { // Use tolerance for float comparison
-            Assert::true(
-                abs($hours) < 0.01,
-                __FILE__.':'.__LINE__.' - '.class_basename(__CLASS__).' - Hours value is effectively zero (within tolerance of 0.01)'
-            );
-
             return '0';
         }
 

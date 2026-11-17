@@ -192,9 +192,9 @@ php artisan test Modules/Employee/tests
 
 ## Collegamenti Documentazione
 
-- [Employee Module Architecture](./ARCHITECTURE.md)
-- [Time Tracking Implementation](./business-logic-time-tracking.md)
-- [PHPStan Level 10 Plan](./phpstan_level10_compliance_plan.md)
+- [Employee Module Architecture](../architecture.md)
+- [Time Tracking Implementation](../business-logic-time-tracking.md)
+- [PHPStan Level 10 Plan](../phpstan_level10_compliance_plan.md)
 - [Widget Documentation](./04-widgets/)
 
 ---

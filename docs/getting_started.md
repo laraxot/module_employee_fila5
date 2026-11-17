@@ -257,7 +257,7 @@ php artisan filament:assets
 ## 📚 Next Steps
 
 ### Explore Documentation
-- **[Architecture Overview](ARCHITECTURE.md)**: System design and components
+- **[Architecture Overview](architecture.md)**: System design and components
 - **[Feature Documentation](02-features/README.md)**: Detailed feature guides
 - **[Implementation Guides](03-implementation/README.md)**: Technical setup
 - **[Widget Documentation](04-widgets/README.md)**: Dashboard widgets

@@ -181,7 +181,7 @@ class MyPage extends XotBasePage
 ### Application Startup Test
 ```bash
 # Test application startup to catch method signature errors immediately
-cd /var/www/html/_bases/base_workorder_fila3_mono/laravel
+cd /var/www/html/_bases/base_workorder_fila5/laravel
 php artisan serve --host=127.0.0.1 --port=8003
 
 # Check for fatal errors

@@ -46,7 +46,7 @@ laravel/Modules/Employee/
 ### composer.json
 ```json
 {
-    "name": "laraxot/module_employee_fila3",
+    "name": "laraxot/module_employee_fila5",
     "description": "employee module for employee management",
     "keywords": [
         "laraxot",
@@ -54,7 +54,7 @@ laravel/Modules/Employee/
         "filament",
         "module_employee"
     ],
-    "homepage": "https://github.com/laraxot/module_employee_fila3",
+    "homepage": "https://github.com/laraxot/module_employee_fila5",
     "license": "MIT",
     "authors": [
         {
@@ -157,10 +157,10 @@ use Modules\Xot\Providers\XotBaseServiceProvider;
 
 /**
  * Service Provider per il modulo Employee.
- * 
+ *
  * Questo provider gestisce la registrazione e configurazione
  * del modulo Employee nell'applicazione Laravel.
- * 
+ *
  * Estende XotBaseServiceProvider per garantire:
  * - Configurazione automatica del modulo
  * - Registrazione viste e traduzioni
@@ -373,4 +373,4 @@ class AdminPanelProvider extends Panel
 - [x] Documentare estensioni
 
 ---
-*Documentazione per configurazione modulo Employee - Seguire sempre le convenzioni Laravel Modules - Mai estendere classi Filament direttamente* 
+*Documentazione per configurazione modulo Employee - Seguire sempre le convenzioni Laravel Modules - Mai estendere classi Filament direttamente*

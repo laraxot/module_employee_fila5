@@ -152,7 +152,7 @@ Correzione sistematica di 32+ errori PHPStan per raggiungere compatibilità live
 ### Collegamenti Bidirezionali
 - [PHPStan Level 10 Compliance Plan](./phpstan_level10_compliance_plan.md)
 - [Employee Module Corrections](./employee-module-corrections-completed.md)
-- [Architecture Documentation](./ARCHITECTURE.md)
+- [Architecture Documentation](architecture.md)
 - [Root PHPStan Documentation](../../../docs/PHPSTAN_LEVEL10_FIXES.md)
 
 ## Prossimi Passi

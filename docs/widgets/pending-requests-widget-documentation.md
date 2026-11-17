@@ -38,7 +38,7 @@ The PendingRequestsWidget serves as a personal request tracking system for:
 
 ### Widget Class Structure
 
-**File**: `/var/www/html/_bases/base_workorder_fila3_mono/laravel/Modules/Employee/app/Filament/Widgets/PendingRequestsWidget.php`
+**File**: `/var/www/html/_bases/base_workorder_fila5/laravel/Modules/Employee/app/Filament/Widgets/PendingRequestsWidget.php`
 
 ```php
 class PendingRequestsWidget extends XotBaseWidget

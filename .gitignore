@@ -135,3 +135,12 @@ tests/AuditCoverage/
 phpinsights.php
 rector.php
 graphify-out
+
+# Laraxot module hygiene (wiki module-theme-root-hygiene)
+.agents/
+.codex/
+.opencode/
+.qwen/
+audit-coverage/
+.php-cs-fixer.php
+.php-cs-fixer.dist.php
