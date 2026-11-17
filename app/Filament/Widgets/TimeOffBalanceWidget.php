@@ -108,12 +108,8 @@ class TimeOffBalanceWidget extends XotBaseSchemaWidget
      */
     protected function formatHoursMinutes(float $hours): string
     {
-<<<<<<< .merge_file_o8MOmm
         $totalMinutes = (int) round($hours * 60.0);
         if ($totalMinutes === 0) {
-=======
-        if (abs($hours) < 0.01) { // Use tolerance for float comparison
->>>>>>> .merge_file_XQ3RAK
             return '0';
         }
 
