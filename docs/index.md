@@ -8,7 +8,7 @@ status: active
 
 Indice per argomento di `Modules/Employee/docs/`. Nessun file esistente è stato spostato, rinominato o cancellato: questo indice si limita a collegare e a segnalare i doppioni noti.
 
-Vedi anche [INDEX.md](INDEX.md) (nota rapida preesistente su canoni/duplicati) e [docs-structure.md](docs-structure.md) / [maintenance/docs-structure.md](maintenance/docs-structure.md) per la storia della riorganizzazione.
+Vedi anche [INDEX.md](INDEX.md) (nota rapida preesistente su canoni/duplicati) e [docs-structure.md](maintenance/docs-structure.md) / [maintenance/docs-structure.md](maintenance/docs-structure.md) per la storia della riorganizzazione.
 
 ## Punto di partenza
 
@@ -47,7 +47,7 @@ Cluster con tre alberi paralleli su contenuti correlati ma **non identici** (div
 - [business_logic/employee_management.md](business_logic/employee_management.md)
 - [business_logic/time_tracking.md](business_logic/time_tracking.md)
 - [business_logic/security_authorization.md](business_logic/security_authorization.md)
-- [business_logic_new/README.md](business_logic_new/README.md)
+- [business_logic_new/README.md](business_logic/README.md)
 - [business_logic_new/overview.md](business_logic_new/overview.md) — diverge da `business_logic/overview.md`
 - [business_logic_new/employee_management.md](business_logic_new/employee_management.md) — diverge da `business_logic/employee_management.md`
 - [business_logic_new/time_tracking.md](business_logic_new/time_tracking.md) — diverge da `business_logic/time_tracking.md`
@@ -75,7 +75,7 @@ Cluster con tre alberi paralleli su contenuti correlati ma **non identici** (div
 - Numerati: [01-employee-management.md](development/01-employee-management.md) · [01-gestione-anagrafica-dipendenti.md](development/01-gestione-anagrafica-dipendenti.md) · [01-sistema-timbratura-presenze.md](development/01-sistema-timbratura-presenze.md) · [02-gestione-dipartimenti.md](development/02-gestione-dipartimenti.md) · [02-gestione-presenze.md](development/02-gestione-presenze.md) · [02-gestione-presenze-assenze.md](development/02-gestione-presenze-assenze.md) · [02-organizational-management.md](development/02-organizational-management.md) · [02-time-tracking.md](development/02-time-tracking.md) · [03-attendance-management.md](development/03-attendance-management.md) · [03-gestione-ferie.md](development/03-gestione-ferie.md) · [03-gestione-ferie-permessi.md](development/03-gestione-ferie-permessi.md) · [03-gestione-posizioni.md](development/03-gestione-posizioni.md) · [04-gestione-presenze.md](development/04-gestione-presenze.md) · [04-gestione-turni-lavoro.md](development/04-gestione-turni-lavoro.md) · [04-leave-management.md](development/04-leave-management.md) · [05-document-management.md](development/05-document-management.md) · [05-gestione-buste-paga-documenti.md](development/05-gestione-buste-paga-documenti.md) · [06-contract-management.md](development/06-contract-management.md) · [06-sistema-note-spese-rimborsi.md](development/06-sistema-note-spese-rimborsi.md) · [07-bacheca-digitale-comunicazioni.md](development/07-bacheca-digitale-comunicazioni.md) · [08-dashboard-analytics-reporting.md](development/08-dashboard-analytics-reporting.md) · [09-sistema-ruoli-autorizzazioni.md](development/09-sistema-ruoli-autorizzazioni.md) · [10-app-mobile-pwa.md](development/10-app-mobile-pwa.md) · [11-integrazione-consulenti-lavoro.md](development/11-integrazione-consulenti-lavoro.md)
 - Sotto-domini con README dedicato: [01-anagrafica-dipendenti/README.md](development/01-anagrafica-dipendenti/README.md) · [communication/README.md](development/communication/README.md) · [document-management/README.md](development/document-management/README.md) · [employee-management/README.md](development/employee-management/README.md) · [integrations/README.md](development/integrations/README.md) · [leave-management/README.md](development/leave-management/README.md) · [mobile/README.md](development/mobile/README.md) · [organizational/README.md](development/organizational/README.md) · [reporting/README.md](development/reporting/README.md) · [security/README.md](development/security/README.md) · [time-tracking/README.md](development/time-tracking/README.md)
 - Reporting: [reporting/dashboard_hr_widgets_implementation.md](development/reporting/dashboard_hr_widgets_implementation.md) · [reporting/dashboard-widgets-specification.md](development/reporting/dashboard-widgets-specification.md) · [reporting/filament_widgets.md](development/reporting/filament_widgets.md)
-- Time tracking / timbrature (versione corrente, sotto `time-tracking/`): [time-tracking/timbrature/README.md](development/time-tracking/timbrature/README.md) · [time-tracking/timbrature/01-migration-time-entries.md](development/time-tracking/timbrature/01-migration-time-entries.md) · [time-tracking/timbrature/models/attendance.php.md](development/time-tracking/timbrature/models/attendance.php.md) · [time-tracking/timbrature/migrations/create_attendances_table.php.md](development/time-tracking/timbrature/migrations/create_attendances_table.php.md)
+- Time tracking / timbrature (versione corrente, sotto `time-tracking/`): [time-tracking/timbrature/README.md](development/timbrature/README.md) · [time-tracking/timbrature/01-migration-time-entries.md](development/timbrature/01-migration-time-entries.md) · [time-tracking/timbrature/models/attendance.php.md](development/timbrature/models/attendance.php.md) · [time-tracking/timbrature/migrations/create_attendances_table.php.md](development/time-tracking/timbrature/migrations/create_attendances_table.php.md)
 - Timbrature (versione precedente, flat sotto `development/`, contenuto duplicato in `time-tracking/timbrature/`): [timbrature/README.md](development/timbrature/README.md) · [timbrature/01-migration-time-entries.md](development/timbrature/01-migration-time-entries.md) · [timbrature/models/attendance.php.md](development/timbrature/models/attendance.php.md)
 - Trasversali: [english_naming_standards.md](development/english_naming_standards.md) · [filament3_widget_patterns.md](development/filament3_widget_patterns.md) · [phpstan-corrections-summary.md](development/phpstan-corrections-summary.md) · [xotbase_widget_checklist.md](development/xotbase_widget_checklist.md)
 
@@ -206,3 +206,32 @@ File non cancellati né rinominati (per vincolo del task), raggruppati perché d
 ## Canoni dichiarati (da INDEX.md preesistente)
 
 Per la sessione corrente restano validi i canoni indicati in [INDEX.md](INDEX.md): `README.md`, `architecture.md`, `rules-index.md` (quest'ultimo non presente come file distinto in questo albero — verificare in una sessione dedicata). Varianti `*.variant.md`, `*.sumy.md`, `*-variant-*.md`, `*.archive-*.md` non sono presenti in questo modulo al momento dell'audit (2026-09-03).
+
+## Mappa delle cartelle
+
+Elenco generato dall'audit qualita' (issue #64): ogni cartella di `docs/` con il numero di file `.md`.
+Le cartelle di import grezzo (`raw/`, `root-*-files/`), immagini e log sono escluse.
+
+| Cartella | File .md |
+|---|---|
+| [`analysis/`](analysis/README.md) | 4 |
+| [`architectural_rules/`](architectural_rules/) | 1 |
+| [`architecture/`](architecture/README.md) | 8 |
+| [`bmad/`](bmad/README.md) | 2 |
+| [`business_logic/`](business_logic/README.md) | 5 |
+| [`business_logic_new/`](business_logic_new/) | 3 |
+| [`concepts/`](concepts/) | 1 |
+| [`development/`](development/README.md) | 47 |
+| [`features/`](features/README.md) | 9 |
+| [`implementation/`](implementation/README.md) | 25 |
+| [`maintenance/`](maintenance/README.md) | 11 |
+| [`models/`](models/) | 6 |
+| [`pages/`](pages/README.md) | 4 |
+| [`refactored/`](refactored/README.md) | 2 |
+| [`refactoring/`](refactoring/) | 1 |
+| [`reports/`](reports/) | 2 |
+| [`stories/`](stories/) | 12 |
+| [`testing/`](testing/) | 1 |
+| [`things-to-develop/`](things-to-develop/) | 2 |
+| [`widgets/`](widgets/README.md) | 26 |
+| [`wiki/`](wiki/index.md) | 8 |

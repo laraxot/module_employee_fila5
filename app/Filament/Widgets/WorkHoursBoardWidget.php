@@ -12,7 +12,6 @@ use Modules\Employee\Actions\BuildWorkHoursForRangeAction;
 use Modules\Employee\Actions\ExportTimeDataAction;
 use Modules\Employee\Actions\GetCurrentEmployeeDataAction;
 use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
-use Override;
 use Spatie\QueueableAction\ActionJob;
 
 /**
@@ -57,15 +56,6 @@ class WorkHoursBoardWidget extends XotBaseSchemaWidget
         $this->weekEnd = Carbon::now()->endOfWeek();
 
         $this->loadWidgetData();
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    #[Override]
-    public function getFormSchema(): array
-    {
-        return [];
     }
 
     /**

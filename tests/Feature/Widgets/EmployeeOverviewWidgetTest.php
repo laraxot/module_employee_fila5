@@ -7,6 +7,9 @@ namespace Modules\Employee\Tests\Feature\Widgets;
 use Modules\Employee\Filament\Widgets\EmployeeOverviewWidget;
 use Modules\Xot\Filament\Widgets\XotBaseStatsOverviewWidget;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('employee overview widget follows the Xot stats widget contract', function (): void {
     $widget = new EmployeeOverviewWidget();

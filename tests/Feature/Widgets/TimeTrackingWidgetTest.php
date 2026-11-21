@@ -8,6 +8,9 @@ use Modules\Employee\Filament\Widgets\TimeClockWidget;
 use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
 use PHPUnit\Framework\Assert;
 use ReflectionClass;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('time clock widget is the supported time tracking widget', function (): void {
     $reflection = new ReflectionClass(TimeClockWidget::class);

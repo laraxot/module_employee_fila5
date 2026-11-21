@@ -7,6 +7,9 @@ namespace Modules\Employee\Tests\Feature;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('work hour next-action cycle uses supported entry types', function (): void {
     Assert::assertSame(

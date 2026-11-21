@@ -6,6 +6,9 @@ namespace Modules\Employee\Tests\Unit\Models;
 
 use Modules\Employee\Models\Employee;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('employee model uses the users table and employee data columns', function (): void {
     $employee = new Employee();

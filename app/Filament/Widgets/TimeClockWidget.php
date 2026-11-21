@@ -12,7 +12,6 @@ use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
 use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
-use Override;
 
 /**
  * Enhanced Time Clock Widget - Primary time tracking interface with improved UI/UX.
@@ -93,17 +92,6 @@ class TimeClockWidget extends XotBaseSchemaWidget
     public function mount(): void
     {
         $this->updateData();
-    }
-
-    /**
-     * Schema form (vuoto per questo widget).
-     *
-     * @return array<string, mixed>
-     */
-    #[Override]
-    public function getFormSchema(): array
-    {
-        return [];
     }
 
     /**

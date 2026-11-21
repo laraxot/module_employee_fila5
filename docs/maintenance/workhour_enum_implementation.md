@@ -222,7 +222,7 @@ php artisan migrate:rollback --path=Modules/Employee/database/migrations
 
 - [PHP Enums Documentation](https://www.php.net/manual/en/language.types.enumerations.php)
 - [Laravel Enum Casting](https://laravel.com/docs/10.x/eloquent-mutators#enum-casting)
-- [Laraxot Coding Standards](../naming-standards.md)
+- [Laraxot Coding Standards](../architecture/naming-standards.md)
 
 ## Important Notes
 
