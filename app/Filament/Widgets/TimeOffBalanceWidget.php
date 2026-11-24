@@ -7,7 +7,6 @@ namespace Modules\Employee\Filament\Widgets;
 use Filament\Schemas\Components\Component;
 use Modules\Xot\Filament\Widgets\XotBaseSchemaWidget;
 use Override;
-use Webmozart\Assert\Assert;
 
 /**
  * TimeOffBalanceWidget - Leave Balance Display Widget
@@ -102,28 +101,22 @@ class TimeOffBalanceWidget extends XotBaseSchemaWidget
     }
 
     /**
-     * Format hours to hours and minutes display
+     * Format decimal hours as "Xh Ym" for leave-balance UI.
+     *
+     * Uses whole minutes (round-half-up) so near-zero balances show as "0"
+     * without fragile float epsilon comparisons.
      */
     protected function formatHoursMinutes(float $hours): string
     {
-        if (abs($hours) < 0.01) { // Use tolerance for float comparison
+        $totalMinutes = (int) round($hours * 60.0);
+        if ($totalMinutes === 0) {
             return '0';
         }
 
-        $isNegative = $hours < 0;
-        $absHours = abs($hours);
-        $wholeHours = floor($absHours);
-        $minutes = round(($absHours - $wholeHours) * 60);
-
-        if ($minutes >= 60) {
-            Assert::greaterThanEq(
-                $minutes,
-                60,
-                __FILE__.':'.__LINE__.' - '.class_basename(__CLASS__).' - Minutes should be 60 or more to warrant hour increment'
-            );
-            $wholeHours++;
-            $minutes = 0;
-        }
+        $isNegative = $totalMinutes < 0;
+        $absMinutes = abs($totalMinutes);
+        $wholeHours = intdiv($absMinutes, 60);
+        $minutes = $absMinutes % 60;
 
         $formatted = '';
         if ($wholeHours > 0) {

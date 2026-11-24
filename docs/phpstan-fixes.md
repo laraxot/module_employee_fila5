@@ -217,3 +217,26 @@ Employee is Parental STI on `users`, not a separate `employees` table. HR payloa
 ### Related
 - [business-logic-employee-management.md](./business-logic-employee-management.md)
 - [phpstan-quality-gate.md](./phpstan-quality-gate.md)
+
+## Wave focus TSV Employee (~52)
+
+**Baseline**: `/tmp/phpstan-focus.tsv` (righe Employee). Host saturo → niente `phpstan analyse Modules` in sessione.
+
+### Perché
+- Filtri timbrature devono usare l’API Filament 5 corrente (`Filter::form()`, non `schema()` deprecato).
+- Il widget rimanenze deve formattare ore/minuti senza confronti float “sempre veri”.
+- `WorkHour::TYPES`/`STATUSES` restano liste legacy allineate agli enum, ma tipizzate (`const array`).
+- I test unitari devono esercitare l’API reale STI (scope/relazioni/helper), non BelongsTo `user()` o relation `documents()`.
+
+### Fix applicati
+| Area | Funzione ripristinata | Come |
+|------|----------------------|------|
+| `TimeClockPage` | filtro intervallo date | già `->form([DatePicker...])` (vendor: `schema()` deprecato) |
+| `TimeOffBalanceWidget` | display `Xh Ym` / near-zero → `0` | minuti interi via `round($hours * 60)` |
+| `WorkHour` | mirror enum tipizzato | `public const array TYPES/STATUSES` da enum |
+| `EmployeeTest` | attivo/inattivo, org graph, leaves/workHours | `employeeFixture()` + `Assert::*` + `query()->active()/inactive()` |
+
+### Related
+- [stories/fix-phpstan-timeclock-argument.story.md](./stories/fix-phpstan-timeclock-argument.story.md)
+- [widgets/time-off-balance-widget-documentation.md](./widgets/time-off-balance-widget-documentation.md)
+- [constants-to-enum-migration.md](./constants-to-enum-migration.md)

@@ -71,17 +71,27 @@ use Modules\User\Models\User;
  */
 class WorkHour extends BaseModel
 {
-    public const TYPES = [
+    /**
+     * Legacy list of punch types (SSoT: WorkHourTypeEnum).
+     *
+     * @var list<string>
+     */
+    public const array TYPES = [
         WorkHourTypeEnum::CLOCK_IN->value,
         WorkHourTypeEnum::CLOCK_OUT->value,
         WorkHourTypeEnum::BREAK_START->value,
         WorkHourTypeEnum::BREAK_END->value,
     ];
 
-    public const STATUSES = [
-        'pending',
-        'approved',
-        'rejected',
+    /**
+     * Legacy list of approval statuses (SSoT: WorkHourStatusEnum).
+     *
+     * @var list<string>
+     */
+    public const array STATUSES = [
+        WorkHourStatusEnum::PENDING->value,
+        WorkHourStatusEnum::APPROVED->value,
+        WorkHourStatusEnum::REJECTED->value,
     ];
 
     /**
