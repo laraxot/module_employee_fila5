@@ -144,3 +144,6 @@ graphify-out
 audit-coverage/
 .php-cs-fixer.php
 .php-cs-fixer.dist.php
+tests/coverage-*.*
+docs/archive/
+docs/screenshots/

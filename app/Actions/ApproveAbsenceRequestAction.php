@@ -11,6 +11,8 @@ use Spatie\QueueableAction\QueueableAction;
 
 /**
  * Approves a pending absence request.
+ *
+ * @contract docs/contracts/approve-absence-request-action.md
  */
 class ApproveAbsenceRequestAction
 {

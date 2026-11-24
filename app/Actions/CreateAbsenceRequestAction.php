@@ -10,6 +10,8 @@ use Spatie\QueueableAction\QueueableAction;
 
 /**
  * Creates a new pending absence request for a user.
+ *
+ * @contract docs/contracts/create-absence-request-action.md
  */
 class CreateAbsenceRequestAction
 {
