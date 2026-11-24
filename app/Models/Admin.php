@@ -78,9 +78,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static Builder|Admin whereUserId($value)
  *
  * @property string|null $name
- * @property string|null $first_name
- * @property string|null $last_name
- * @property string $email
  * @property string|null $city
  * @property string|null $registration_number
  * @property string|null $status
@@ -127,7 +124,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read int|null $roles_count
  * @property-read Collection<int, SocialiteUser> $socialiteUsers
  * @property-read int|null $socialite_users_count
- * @property-read mixed|null $pivot
  * @property-read Collection<int, Team> $teams
  * @property-read int|null $teams_count
  * @property-read Collection<int, Token> $tokens

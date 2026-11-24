@@ -223,7 +223,7 @@ Timbratura Creata → pending → Manager Review → approved/rejected → Notif
 
 ### Implementation Guides
 - [Installation Guide](./installation.md)
-- [Configuration Guide](./configuration.md)
+- [Configuration Guide](implementation/configuration.md)
 - [API Documentation](./api-reference.md)
 - [Mobile SDK Guide](./mobile-sdk.md)
 

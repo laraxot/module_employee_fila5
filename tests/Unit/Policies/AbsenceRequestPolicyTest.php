@@ -10,6 +10,9 @@ use Modules\Employee\Enums\AbsenceRequestStatusEnum;
 use Modules\Employee\Models\AbsenceRequest;
 use Modules\Employee\Policies\AbsenceRequestPolicy;
 use Modules\Xot\Contracts\UserContract;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 /*
  * Utenti e richieste sono in memoria (nessun database, nessuna app): la regola dipende solo da ruolo, id e stato.

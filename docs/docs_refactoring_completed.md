@@ -20,7 +20,7 @@ Tutta la documentazione business logic è stata aggiornata per utilizzare esclus
 
 ### Business Logic (Actions Pattern)
 
-1. **[business_logic_new/README.md](business_logic_new/README.md)**
+1. **[business_logic_new/README.md](business_logic/README.md)**
    - Panoramica completa pattern Actions
    - Struttura Actions per categoria
    - Guidelines implementazione

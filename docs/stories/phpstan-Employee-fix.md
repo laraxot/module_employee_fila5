@@ -17,7 +17,7 @@ di iniziare, il modulo era già fortemente conteso: WIP non committato di un alt
 agente in corso su `AbsenceRequestResource.php`/`WorkHourResource.php`
 (estrazione Schemas/Tables, rimozione override `getFormSchema()` inline morto —
 pattern `pattern_xotbaseresource_schemas_class_wins_over_inline`), più uno story
-file vuoto creato pochi minuti prima (`phpstan-fix-1788768735.story.md`, 2026-09-07
+file vuoto creato pochi minuti prima (`phpstan-fix.story.md`, 2026-09-07
 10:12) e un commit vuoto immediatamente precedente (`c76077f`, solo uno `.story.md`
 da 0 byte). Deciso di non fare `git add -A` cieco e di limitare le modifiche solo ai
 file necessari per l'errore PHPStan reale.
@@ -101,4 +101,4 @@ Nessun `@phpstan-ignore`, nessuna baseline, nessun tocco a `phpstan.neon`, nessu
 `laravel/Modules/Employee/app/Filament/Resources/WorkHourResource.php` (unico file di
 codice toccato da questa story). Non toccati i file WIP di un altro agente
 (`AbsenceRequestResource*`, `WorkHourForm.php`, `WorkHourInfolist.php` diff-only riga
-`use`, `docs/implementation*`) né lo story file vuoto `phpstan-fix-1788768735.story.md`.
+`use`, `docs/implementation*`) né lo story file vuoto `phpstan-fix.story.md`.

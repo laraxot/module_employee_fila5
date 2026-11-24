@@ -201,8 +201,8 @@ Based on existing Employee module tests:
 
 ### **Module Documentation**
 - [Employee Module README](../README.md)
-- [WorkHour Model Documentation](../work_hour.md)
-- [Time Tracking Architecture](../technical_architecture.md)
+- [WorkHour Model Documentation](../features/work_hour.md)
+- [Time Tracking Architecture](../architecture/technical_architecture.md)
 
 ### **Testing Resources**
 - [CMS Testing Best Practices](../../Cms/docs/tests/pestphp-best-practices.md)

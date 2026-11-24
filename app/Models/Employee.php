@@ -343,9 +343,9 @@ class Employee extends User
     /**
      * Prefer contact_data.email when the users.email column is empty.
      */
-    public function getEmailAttribute(mixed $value): string
+    public function getEmailAttribute(?string $value): string
     {
-        if (is_string($value) && $value !== '') {
+        if ($value !== null && $value !== '') {
             return $value;
         }
 
@@ -354,15 +354,15 @@ class Employee extends User
             return $contact['email'];
         }
 
-        return is_string($value) ? $value : '';
+        return '';
     }
 
     /**
      * Phone lives in contact_data (no dedicated column on users).
      */
-    public function getPhoneAttribute(mixed $value = null): ?string
+    public function getPhoneAttribute(?string $value = null): ?string
     {
-        if (is_string($value) && $value !== '') {
+        if ($value !== null && $value !== '') {
             return $value;
         }
 

@@ -8,6 +8,9 @@ use Modules\Employee\Enums\WorkHourStatusEnum;
 use Modules\Employee\Enums\WorkHourTypeEnum;
 use Modules\Employee\Models\WorkHour;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('work hour supports the declared type and status values', function (): void {
     Assert::assertSame(WorkHourTypeEnum::values(), WorkHourTypeEnum::values());

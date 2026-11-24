@@ -6,6 +6,9 @@ namespace Modules\Employee\Tests\Unit\Models;
 
 use Modules\Employee\Models\AbsenceRequest;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('absence request casts datetime attributes', function (): void {
     $casts = (new AbsenceRequest())->getCasts();

@@ -6,6 +6,9 @@ namespace Modules\Employee\Tests\Feature;
 
 use Modules\Employee\Models\WorkHour;
 use PHPUnit\Framework\Assert;
+use Modules\Employee\Tests\TestCase;
+
+uses(TestCase::class);
 
 test('work hour model exposes management columns', function (): void {
     $workHour = new WorkHour();
