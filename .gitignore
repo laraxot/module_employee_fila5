@@ -144,6 +144,7 @@ graphify-out
 audit-coverage/
 .php-cs-fixer.php
 .php-cs-fixer.dist.php
+<<<<<<< .merge_file_0d9Fkn
 <<<<<<< .merge_file_FDUDHu
 
 # screenshot di comparazione visiva (artefatti locali)
@@ -154,3 +155,8 @@ tests/coverage-*.*
 docs/archive/
 docs/screenshots/
 >>>>>>> .merge_file_k4aDEp
+=======
+tests/coverage-*.*
+docs/archive/
+docs/screenshots/
+>>>>>>> .merge_file_tgqAaV
