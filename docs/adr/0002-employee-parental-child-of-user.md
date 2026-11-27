@@ -36,7 +36,7 @@ restituisce solo le righe del suo tipo.
 - Pro: `Auth::user()` può già essere un `Employee`; relazioni di User (ruoli, team, consensi) valgono senza codice.
 - Contro: le colonne del dipendente stanno su `users`, quindi sulla connessione `user`, mentre le tabelle del modulo
   (`absence_requests`, `time_records`, ...) stanno sulla connessione `employee`: niente FK tra le due (vedi
-  [user-id-string-columns-without-cross-db-fk](user-id-string-columns-without-cross-db-fk.md)).
+  [0003-user-id-string-columns-without-cross-db-fk](0003-user-id-string-columns-without-cross-db-fk.md)).
 - Le relazioni `workHours`/`leaves` del dipendente puntano a tabelle di un'altra connessione: niente `whereHas` tra
   database diversi.
 

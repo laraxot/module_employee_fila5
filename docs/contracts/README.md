@@ -3,7 +3,7 @@ title: "Contratti — modulo Employee"
 type: index
 tags: [contracts, actions, employee, assenze]
 created: 2026-11-24
-updated: 2026-11-24
+updated: 2026-11-27
 ---
 
 # Contratti del modulo Employee
@@ -15,6 +15,24 @@ Leggili prima di chiamare queste Action fuori dalla tabella Filament: i controll
 chiamante, non qui. Formato: `Modules/Xot/docs/rules/action-behavioral-contract.md`.
 
 `TimeTracking/ClockInAction` e `ClockOutAction` non hanno chiamanti nel codice: niente contratto finché non si decide se usarle o toglierle.
+
+## Formato
+
+Un file per Action, nome in kebab-case della classe, frontmatter `type: contract` e `action: "Modules\\Employee\\Actions\\..."`,
+e queste sei sezioni nell'ordine:
+
+```markdown
+## Input
+## Output
+## Invarianti
+## Effetti collaterali
+## Errori
+## Non fa
+```
+
+Il docblock dell'Action rimanda al file con `@contract docs/contracts/<file>.md`. Gli ID di invariante sono stabili
+(`<SCOPE>-INV-<N>`) e un test Pest li usa come `->group('<ID>')`. Template: [_template.md](_template.md).
+Inventario machine-readable: [INDEX.md](INDEX.md); tabella di lavoro: [index.md](index.md).
 
 ## Contratti di Action
 

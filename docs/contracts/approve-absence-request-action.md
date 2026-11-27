@@ -42,4 +42,4 @@ Sorgente: `app/Actions/ApproveAbsenceRequestAction.php`. Chiamata dall'azione `a
 - Non controlla l'autorizzazione: la tabella usa `->authorize('approve')` (policy).
 - Non notifica il dipendente.
 - Debito del chiamante: la tabella passa `(int) Auth::id()`, che tronca un id UUID (vedi
-  [ADR](../adr/user-id-string-columns-without-cross-db-fk.md)).
+  [ADR](../adr/0003-user-id-string-columns-without-cross-db-fk.md)).
