@@ -19,6 +19,13 @@ related:
   `position_id`, `salary_data`) sono propri del dipendente.
 - Domanda: tabella `employees` collegata a `users`, o stessa riga con un tipo?
 
+## Driver della decisione
+
+- Unicità del dato: una sola riga per persona, niente duplicati da tenere allineati.
+- Riuso del modulo User: password, ruoli, team, consensi e media valgono sullo stesso record, senza codice extra.
+- Coerenza col modello Parental già in uso nel progetto (`HasParent`/`HasChildren`).
+- L'utente autenticato deve poter essere già un `Employee`, perché policy e relazioni non vadano ricaricate.
+
 ## Decisione
 
 `Modules/Employee/app/Models/Employee.php`: `class Employee extends User`, `use HasParent;`, `protected $table = 'users'`.

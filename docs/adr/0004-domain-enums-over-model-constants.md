@@ -18,6 +18,12 @@ related:
 - La decisione esiste in forma breve in `docs/bmad/domain-enums-over-model-constants.md`.
 - Domanda: dove sta il vocabolario finito del dominio?
 
+## Driver della decisione
+
+- Un solo elenco tipizzato: stati e tipi del dominio in un punto solo, con etichette tradotte.
+- Tipo sicuro ai confini: form, factory, query e policy non ripetono stringhe a mano né scrivono valori fuori lista.
+- Separazione netta: il vocabolario di dominio non si mescola alle costanti tecniche dei modelli.
+
 ## Decisione
 
 - Backed enum in `app/Enums/`: `AbsenceRequestStatusEnum`, `AbsenceRequestTypeEnum`, `TimeEntryStatusEnum`,

@@ -20,6 +20,12 @@ related:
   (`Modules/Employee/app/Models/BaseModel.php`). Con database distinti MySQL non ammette FK tra i due.
 - Domanda: che tipo e che vincoli per `user_id`, `decided_by_user_id` e simili?
 
+## Driver della decisione
+
+- Integrità dell'id: l'UUID va conservato intero, mai troncato da un cast o da una colonna intera.
+- Portabilità multi-database: `users` può stare su un'altra connessione, dove MySQL non ammette FK.
+- Uniformità tra driver: la stringa da 36 funziona uguale su SQLite e MySQL.
+
 ## Decisione
 
 - `$table->string('<colonna>', 36)` per `absence_requests.user_id`, `absence_requests.decided_by_user_id`,
